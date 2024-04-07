@@ -1,8 +1,39 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+@model Customer
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+@using System.Security.Claims
+@using FinanceTracker.Models.Enums
+
+@{
+    var e = Model.Expenses;
+
+    var i = Model.Incomes;
+}
+
+@if (User.Identity.IsAuthenticated)
+{
+    <h1>Welcome @User.FindFirst("userName").Value
+    </h1>
+    var adminString = Enum.GetName(typeof(Role), Role.admin)!;
+    @if (User.FindFirst(ClaimTypes.Role).Value == adminString)
+    {
+        <h1>the fancy chart is here</h1>
+    }
+
+    @foreach(var expense in e)
+    {
+        <h1>@(expense.amount) at @(expense.TimeStamp)</h1>
+    }
+
+   @foreach (var Income in i)
+    {
+        <h1>@(Income.amount) at @(Income.TimeStamp)</h1>
+    }
+
+}
+else
+{
+    <h1>hello, Please log in first</h1>
+}

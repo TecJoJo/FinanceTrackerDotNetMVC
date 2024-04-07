@@ -1,6 +1,8 @@
 using FinanceTracker.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
+using System.Security.Claims;
 
 namespace FinanceTracker.Controllers
 {
@@ -8,14 +10,33 @@ namespace FinanceTracker.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        private readonly ApplicationDbContext _dbContext;
+
+        public HomeController(ILogger<HomeController> logger, ApplicationDbContext dbContext)
         {
             _logger = logger;
+            _dbContext = dbContext;
         }
 
         public IActionResult Index()
         {
+            var customerId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
+            
+
+            if (customerId == null)
+            {
+
             return View();
+            }
+            else
+            {
+                var customer = _dbContext.Customers
+                                 .Include(c => c.Incomes) // Include related Orders
+                                 .Include(c => c.Expenses) // Include related Orders
+                                 .FirstOrDefault(e => e.CustomerId == customerId);
+
+                return View(customer);
+            }
         }
 
         public IActionResult Privacy()

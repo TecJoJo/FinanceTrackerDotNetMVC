@@ -24,8 +24,9 @@ namespace FinanceTracker.Utils
             var claims = new List<Claim>()
             {
 
-                new Claim(ClaimTypes.NameIdentifier, customer.UserName),
-                new Claim(ClaimTypes.Role,RoleName)
+                new Claim(ClaimTypes.NameIdentifier, customer.CustomerId.ToString()),
+                new Claim(ClaimTypes.Role,RoleName),
+                new Claim("userName",customer.UserName)
 
             };
 

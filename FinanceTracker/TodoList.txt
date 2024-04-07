@@ -4,8 +4,5 @@ data visualization
 so the login feature first 
 
 
-
-what do i remember about the cookie auth 
-program.cs some configuration 
-an login controller 
+the we loop the transactions into the homepage 
 

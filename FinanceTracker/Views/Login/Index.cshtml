@@ -3,29 +3,33 @@
 
 <div class="container-lg">
 
-<form asp-controller="Login" asp-action="Index">
-    <!-- Email input -->
-    <div class="form-outline mb-4">
-        <input asp-for="userName" class="form-control" />
-        <label asp-for="userName"  class="form-label">Username</label>
-        <span asp-validation-for="userName"></span>
-    </div>
+    
+    
+        <form asp-controller="Login" asp-action="Index">
+            <!-- Email input -->
+            <div class="form-outline mb-4">
+                <input asp-for="userName" class="form-control" />
+                <label asp-for="userName" class="form-label">Username</label>
+                <span asp-validation-for="userName"></span>
+            </div>
 
-    <!-- Password input -->
-    <div class="form-outline mb-4">
-        <input asp-for="password" class="form-control" />
-        <label asp-for="password" class="form-label">Password</label>
-        <span asp-validation-for="password"></span>
-    </div>
+            <!-- Password input -->
+            <div class="form-outline mb-4">
+                <input asp-for="password" class="form-control" />
+                <label asp-for="password" class="form-label">Password</label>
+                <span asp-validation-for="password"></span>
+            </div>
 
- 
 
-    <!-- Submit button -->
-    <button type="submit" class="btn btn-primary btn-block mb-4">Sign in</button>
 
-    <!-- Register buttons -->
-    <div class="text-center">
-        <p>Not a member? <a href="/">Register</a></p>
-    </div>
-</form>
+            <!-- Submit button -->
+            <button type="submit" class="btn btn-primary btn-block mb-4">Sign in</button>
+
+            <!-- Register buttons -->
+            <div class="text-center">
+                <p>Not a member? <a href="/">Register</a></p>
+            </div>
+        </form>
+    
+   
 </div>

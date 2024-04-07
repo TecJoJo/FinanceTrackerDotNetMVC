@@ -1,0 +1,11 @@
+User can login and check the expense history this is Create of the CRUD, we implement the CRUD first so not yet the 
+data visualization 
+
+so the login feature first 
+
+
+
+what do i remember about the cookie auth 
+program.cs some configuration 
+an login controller 
+

@@ -1,0 +1,48 @@
+﻿using FinanceTracker.Models;
+using FinanceTracker.Models.Enums;
+using FinanceTracker.ViewModel;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication;
+using System.Security.Claims;
+
+namespace FinanceTracker.Utils
+{
+    public static class Auth
+    {
+        public static Customer? IdentityValidation(LoginViewModel userInfo, ApplicationDbContext dbContext)
+        {
+            Customer? customer = dbContext.Customers.FirstOrDefault(c => c.UserName == userInfo.userName);
+
+            return customer;
+
+            
+        }
+
+        public static async void  Login(Customer customer, HttpContext httpContext)
+        {
+            string RoleName = Enum.GetName(typeof(Role), customer.Role)!;
+            var claims = new List<Claim>()
+            {
+
+                new Claim(ClaimTypes.NameIdentifier, customer.UserName),
+                new Claim(ClaimTypes.Role,RoleName)
+
+            };
+
+            var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+
+            var authProperties = new AuthenticationProperties
+            {
+                AllowRefresh = true,
+                ExpiresUtc = DateTimeOffset.UtcNow.AddMinutes(30),
+                IsPersistent = true,
+            };
+            await httpContext.SignInAsync(
+                CookieAuthenticationDefaults.AuthenticationScheme,
+                new ClaimsPrincipal(claimsIdentity),
+                authProperties
+                );
+
+        }
+    }
+}

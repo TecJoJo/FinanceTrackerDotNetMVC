@@ -6,3 +6,11 @@ so the login feature first
 
 the we loop the transactions into the homepage 
 
+
+there should be a page called Finance Tracker which lead to the home page where we show the lists of the transactions which have buttons integrated edit and delete which leads to detail page 
+
+inside the page we can interact with the page with Button(ajax behind the scene) which leads to new transactions
+
+
+
+

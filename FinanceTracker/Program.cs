@@ -9,7 +9,16 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlite(builder.Configuration.GetConnectionString("FinanceTrackerContext")));
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-    .AddCookie();
+    .AddCookie(options =>
+    {
+        options.LoginPath = "/Login";
+        options.AccessDeniedPath = "/";
+        options.LogoutPath = "/Login";
+        options.ExpireTimeSpan = TimeSpan.FromMinutes(30);
+        options.Cookie.Name = "SWIGLET_COOKZ";
+    }
+
+    );
 var app = builder.Build();
 
 using (var scope = app.Services.CreateScope())

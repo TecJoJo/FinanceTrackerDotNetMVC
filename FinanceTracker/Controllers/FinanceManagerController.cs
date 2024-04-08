@@ -1,23 +1,22 @@
-using FinanceTracker.Models;
+﻿using FinanceTracker.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System.Diagnostics;
 using System.Security.Claims;
 
 namespace FinanceTracker.Controllers
 {
-    public class HomeController : Controller
+    
+    public class FinanceManagerController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-
         private readonly ApplicationDbContext _dbContext;
 
-        public HomeController(ILogger<HomeController> logger, ApplicationDbContext dbContext)
+        public FinanceManagerController (ApplicationDbContext dbContext)
         {
-            _logger = logger;
+            
             _dbContext = dbContext;
         }
-
+        [Authorize]
         public IActionResult Index()
         {
             var customerIdString = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
@@ -27,7 +26,7 @@ namespace FinanceTracker.Controllers
             if (customerIdString == null)
             {
 
-            return View();
+                return View();
             }
             else
             {
@@ -39,17 +38,6 @@ namespace FinanceTracker.Controllers
                 return View(customer);
 
             }
-        }
-
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
 }

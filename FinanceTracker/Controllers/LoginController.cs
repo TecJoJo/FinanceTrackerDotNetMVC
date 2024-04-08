@@ -1,6 +1,8 @@
 ﻿using FinanceTracker.Models;
 using FinanceTracker.Utils;
 using FinanceTracker.ViewModel;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FinanceTracker.Controllers
@@ -48,6 +50,16 @@ namespace FinanceTracker.Controllers
                 
             }
 
+        }
+
+        public IActionResult Logout()
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+
+                HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            }
+            return RedirectToAction("Index");
         }
 
 

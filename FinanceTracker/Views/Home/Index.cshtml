@@ -6,11 +6,7 @@
 @using System.Security.Claims
 @using FinanceTracker.Models.Enums
 
-@{
-    var e = Model.Expenses;
 
-    var i = Model.Incomes;
-}
 
 @if (User.Identity.IsAuthenticated)
 {
@@ -22,12 +18,12 @@
         <h1>the fancy chart is here</h1>
     }
 
-    @foreach(var expense in e)
+    @foreach (var expense in Model.Expenses)
     {
         <h1>@(expense.amount) at @(expense.TimeStamp)</h1>
     }
 
-   @foreach (var Income in i)
+    @foreach (var Income in Model.Incomes)
     {
         <h1>@(Income.amount) at @(Income.TimeStamp)</h1>
     }

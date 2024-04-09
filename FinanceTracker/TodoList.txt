@@ -12,5 +12,9 @@ there should be a page called Finance Tracker which lead to the home page where 
 inside the page we can interact with the page with Button(ajax behind the scene) which leads to new transactions
 
 
+About the form to edit:
 
+	the edit will be presented as an extra row inside the table where we can modify the states of the transaction, and confirm or cancel it. Behind the scene
+			the button which edit trigger should be using patial view which is the form 
+			the form is seperate form with an edit controller which recieve the input.
 

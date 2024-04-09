@@ -36,8 +36,9 @@
                 {
                     <li class="list-group-item @(transaction.Type == "Income"?"list-group-item-primary":"list-group-item-warning") d-flex justify-content-around">
                         <p class="w-75 m-auto">@(transaction.Type.ToUpper()): @(transaction.Amount)€ at @(transaction.TimeStamp) for @(transaction.Category)</p>
-                        <div><span class="mx-1"><button class="btn btn-outline-primary">Edit</button></span><span class="mx-1"><button class="btn btn-outline-danger">Delete</button></span></div>
+                        <div><span class="mx-1"><button id="editBtn" data-id=@(transaction.Id) data-type=@(transaction.Type) class="btn btn-outline-primary">Edit</button></span><span class="mx-1"><button class="btn btn-outline-danger">Delete</button></span></div>
                     </li>
+                    <div id="editContainer"></div>
                     
                 }
 
@@ -54,3 +55,10 @@ else
 {
     <h1>hello, Please log in first</h1>
 }
+
+
+
+@section Scripts{
+    <script src="~/js/EditFormToggle.js"></script>
+
+};

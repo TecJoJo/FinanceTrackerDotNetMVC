@@ -107,7 +107,20 @@ namespace FinanceTracker.Controllers
 
             }
         }
+
+        public IActionResult Edit()
+        {
+            return PartialView();
+        }
+
+        [HttpPost]
+        public IActionResult Edit(TransactionEditFormView EditForm)
+        {
+            var temp = EditForm;
+            return PartialView(EditForm);
+        }
     }
+        
 
         
 }

@@ -18,3 +18,4 @@ About the form to edit:
 			the button which edit trigger should be using patial view which is the form 
 			the form is seperate form with an edit controller which recieve the input.
 
+read the selection help tags https://learn.microsoft.com/en-us/aspnet/core/mvc/views/working-with-forms?view=aspnetcore-8.0#the-select-tag-helper

@@ -17,6 +17,24 @@ namespace FinanceTracker.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.3");
 
+            modelBuilder.Entity("FinanceTracker.Models.Category", b =>
+                {
+                    b.Property<int>("CategoryId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("type")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("CategoryId");
+
+                    b.ToTable("Categories");
+                });
+
             modelBuilder.Entity("FinanceTracker.Models.Customer", b =>
                 {
                     b.Property<int>("CustomerId")
@@ -52,13 +70,13 @@ namespace FinanceTracker.Migrations
                     b.ToTable("Customers");
                 });
 
-            modelBuilder.Entity("FinanceTracker.Models.Expense", b =>
+            modelBuilder.Entity("FinanceTracker.Models.Transaction", b =>
                 {
-                    b.Property<int>("ExpenseId")
+                    b.Property<int>("TransactionId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("Category")
+                    b.Property<int>("CategoryId")
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("CustomerId")
@@ -73,68 +91,42 @@ namespace FinanceTracker.Migrations
                     b.Property<string>("description")
                         .HasColumnType("TEXT");
 
-                    b.HasKey("ExpenseId");
+                    b.HasKey("TransactionId");
+
+                    b.HasIndex("CategoryId");
 
                     b.HasIndex("CustomerId");
 
-                    b.ToTable("Expenses");
+                    b.ToTable("Transactions");
                 });
 
-            modelBuilder.Entity("FinanceTracker.Models.Income", b =>
+            modelBuilder.Entity("FinanceTracker.Models.Transaction", b =>
                 {
-                    b.Property<int>("IncomeId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
+                    b.HasOne("FinanceTracker.Models.Category", "Category")
+                        .WithMany("transactions")
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Property<int>("Category")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("CustomerId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<DateTime>("TimeStamp")
-                        .HasColumnType("TEXT");
-
-                    b.Property<decimal>("amount")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("description")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("IncomeId");
-
-                    b.HasIndex("CustomerId");
-
-                    b.ToTable("Incomes");
-                });
-
-            modelBuilder.Entity("FinanceTracker.Models.Expense", b =>
-                {
                     b.HasOne("FinanceTracker.Models.Customer", "Customer")
-                        .WithMany("Expenses")
+                        .WithMany("Transactions")
                         .HasForeignKey("CustomerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.Navigation("Category");
+
                     b.Navigation("Customer");
                 });
 
-            modelBuilder.Entity("FinanceTracker.Models.Income", b =>
+            modelBuilder.Entity("FinanceTracker.Models.Category", b =>
                 {
-                    b.HasOne("FinanceTracker.Models.Customer", "Customer")
-                        .WithMany("Incomes")
-                        .HasForeignKey("CustomerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Customer");
+                    b.Navigation("transactions");
                 });
 
             modelBuilder.Entity("FinanceTracker.Models.Customer", b =>
                 {
-                    b.Navigation("Expenses");
-
-                    b.Navigation("Incomes");
+                    b.Navigation("Transactions");
                 });
 #pragma warning restore 612, 618
         }

@@ -31,12 +31,12 @@ namespace FinanceTracker.Controllers
             }
             else
             {
-                var customer = _dbContext.Customers
-                                 .Include(c => c.Incomes) // Include related Orders
-                                 .Include(c => c.Expenses) // Include related Orders
-                                 .FirstOrDefault(e => e.CustomerId == customerId);
+                //var customer = _dbContext.Customers
+                //                 .Include(c => c.Incomes) // Include related Orders
+                //                 .Include(c => c.Expenses) // Include related Orders
+                //                 .FirstOrDefault(e => e.CustomerId == customerId);
 
-                return View(customer);
+                return View();
 
             }
         }

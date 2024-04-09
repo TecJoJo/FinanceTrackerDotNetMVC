@@ -79,7 +79,21 @@ namespace FinanceTracker.Controllers
 
 
                 //return View(customerTransactions);
-                return View();
+
+                var transactions = _dbContext.Transactions.Where(e => e.CustomerId == customerId)
+                                            .OrderByDescending(e => e.TimeStamp)
+                                            .Include(e=>e.Category)
+                                            .Select(e=>new TransactionViewModel()
+                                            {
+                                                TimeStamp = e.TimeStamp,
+                                                Amount = e.amount,
+                                                Description = e.description,
+                                                Id = e.TransactionId,
+                                                Type = e.Category.type.ToString()
+
+                                            }).ToList();
+                
+                return View(transactions);
 
             }
         }

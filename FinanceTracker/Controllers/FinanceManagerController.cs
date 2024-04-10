@@ -59,11 +59,18 @@ namespace FinanceTracker.Controllers
 
                 FinanceTrackerIndexViewModel indexViewModel = new FinanceTrackerIndexViewModel()
                 {
+
+
+                    transactionListItems = transactions,
+                    transactionCreateForm = new TransactionCreateFormViewModel()
+                    {
+                        CategoryId = 10,
+                        selectListItems = OptionList
+                    }
+                    
                    
-                    selectListItems = OptionList,
-                    transactionListItems = transactions
 
-
+                   
                 };
                 
                 return View(indexViewModel);
@@ -84,7 +91,7 @@ namespace FinanceTracker.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(TransactionCreateFormViewModel createForm)
+        public IActionResult Create([Bind("transactionCreateForm")] FinanceTrackerIndexViewModel indexViewModel)
         {
             if(!ModelState.IsValid)
             {

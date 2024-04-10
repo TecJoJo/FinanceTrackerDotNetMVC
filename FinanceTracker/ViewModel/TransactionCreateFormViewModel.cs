@@ -1,4 +1,5 @@
 ﻿using FinanceTracker.Models;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -8,7 +9,7 @@ namespace FinanceTracker.ViewModel
     {
 
         [DataType(DataType.DateTime)]
-        public DateTime TimeStamp { get; set; }
+        public DateTime TimeStamp { get; set; } = DateTime.Now; 
 
         public decimal amount { get; set; }
 
@@ -19,6 +20,6 @@ namespace FinanceTracker.ViewModel
 
         public int CategoryId { get; set; }
 
-
+        public List<SelectListItem> selectListItems { get; set; }
     }
 }

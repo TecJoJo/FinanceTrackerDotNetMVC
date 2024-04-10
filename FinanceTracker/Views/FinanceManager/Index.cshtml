@@ -49,22 +49,22 @@
                             <div class="form-row">
                                 <div class="form-group ">
 
-                                    <label asp-for="transactionCreateFormViewModel.amount">Amount:</label>
-                                    <input asp-for="transactionCreateFormViewModel.amount" type="number" class="form-control">
+                                    <label asp-for="transactionCreateForm.amount">Amount:</label>
+                                    <input asp-for="transactionCreateForm.amount" class="form-control">
                                 </div>
                                 <div class="form-group">
-                                    <label asp-for="transactionCreateFormViewModel.description">Description</label>
-                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                    <label asp-for="transactionCreateForm.description">Description</label>
+                                    <textarea asp-for="transactionCreateForm.description" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                                 </div>
                             </div>
-                            <label asp-for="transactionCreateFormViewModel.CategoryId">Choose a category</label>
+                            <label >Choose a category</label>
 
-                            <select class="form-control" asp-items="Model.selectListItems">
+                            <select class="form-control"asp-for="transactionCreateForm.CategoryId" asp-items="Model.transactionCreateForm.selectListItems">
                            
                             </select>
-                            <label asp-for="transactionCreateFormViewModel.TimeStamp">Time</label>
+                            <label asp-for="transactionCreateForm.TimeStamp">Time</label>
 
-                            <input asp-for="transactionCreateFormViewModel.TimeStamp" />
+                            <input asp-for="transactionCreateForm.TimeStamp" />
 
                         </div>
                         <button type="submit" class="btn btn-primary">Create Transaction</button>

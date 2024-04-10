@@ -7,10 +7,10 @@ namespace FinanceTracker.ViewModel
     {   
       
 
-        public List<SelectListItem> selectListItems { get; set; }
+        
 
         public List<TransactionViewModel> transactionListItems { get; set; }    
 
-        public TransactionCreateFormViewModel transactionCreateFormViewModel { get; set; } = new TransactionCreateFormViewModel();
+        public TransactionCreateFormViewModel transactionCreateForm { get; set; } 
     }
 }

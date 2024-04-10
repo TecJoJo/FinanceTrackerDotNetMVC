@@ -49,18 +49,12 @@ namespace FinanceTracker.Controllers
 
                                             }).ToList();
 
-                var options = _dbContext.Categories.Select(e => new SelectListItem()
-                {
-                    Value = e.CategoryId.ToString(),
-                    Text = e.Name
-                });
-
-                List<SelectListItem> OptionList = options.ToList();
+               
 
                 FinanceTrackerIndexViewModel indexViewModel = new FinanceTrackerIndexViewModel()
                 {
                    
-                    selectListItems = OptionList,
+                   
                     transactionListItems = transactions
 
 
@@ -83,23 +77,42 @@ namespace FinanceTracker.Controllers
             return PartialView(EditForm);
         }
 
+
+        public IActionResult Create() {
+            var options = _dbContext.Categories.Select(e => new SelectListItem()
+            {
+                Value = e.CategoryId.ToString(),
+                Text = e.Name
+            });
+
+            List<SelectListItem> OptionList = options.ToList();
+
+            var createForm = new TransactionCreateFormViewModel()
+            {
+                selectListItems = OptionList
+            };
+            return PartialView(createForm); 
+        }
+
         [HttpPost]
         public IActionResult Create(TransactionCreateFormViewModel createForm)
         {
-            if(!ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 // Constructing an object with the error message
                 var errorObject = new { error = "Invalid form" };
 
                 // Returning the error object as JSON
                 return Json(errorObject);
+
+
             }
-            else{
+            else
+            {
                 return RedirectToAction("Index");
             }
         }
 
-        
     }
         
 

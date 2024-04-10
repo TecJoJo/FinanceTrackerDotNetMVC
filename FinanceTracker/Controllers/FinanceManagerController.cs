@@ -2,6 +2,7 @@
 using FinanceTracker.ViewModel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Security.Claims;
@@ -33,52 +34,7 @@ namespace FinanceTracker.Controllers
             // the user is logged into the app 
             else
             {
-                //var customer = _dbContext.Customers
-                //                 .Include(c => c.Incomes) // Include related Orders
-                //                 .Include(c => c.Expenses) // Include related Orders
-                //                 .FirstOrDefault(e => e.CustomerId == customerId);
-
-
-
-
-
-                //var customerIncomes = _dbContext.Incomes
-                //    .Where(i => i.CustomerId == customerId)
-                //    .OrderByDescending(i => i.TimeStamp)
-                //    .Take(5)
-                //    .Select(i => new TransactionViewModel()
-                //    {
-                //        TimeStamp = i.TimeStamp,
-                //        Amount = i.amount,
-                //        Description = i.description,
-                //        Category = i.Category.ToString(),
-                //        Id = i.IncomeId,
-                //        Type = "Income",
-                //    })
-                //    .ToList();
-
-                //var customerExpenses = _dbContext.Expenses
-                //    .Where(e => e.CustomerId == customerId)
-                //    .OrderByDescending(e => e.TimeStamp)
-                //    .Take(5)
-                //    .Select(e => new TransactionViewModel()
-                //    {
-                //        TimeStamp = e.TimeStamp,
-                //        Amount = e.amount,
-                //        Description = e.description,
-                //        Category = e.Category.ToString(),
-                //        Id = e.ExpenseId,
-                //        Type = "Expense"
-                //    })
-                //    .ToList();
-
-                //var customerTransactions = customerIncomes
-                //    .Concat(customerExpenses)
-                //    .OrderByDescending(t => t.TimeStamp)
-                //    .ToList();
-
-
-                //return View(customerTransactions);
+                
 
                 var transactions = _dbContext.Transactions.Where(e => e.CustomerId == customerId)
                                             .OrderByDescending(e => e.TimeStamp)
@@ -92,8 +48,25 @@ namespace FinanceTracker.Controllers
                                                 Type = e.Category.type.ToString()
 
                                             }).ToList();
+
+                var options = _dbContext.Categories.Select(e => new SelectListItem()
+                {
+                    Value = e.CategoryId.ToString(),
+                    Text = e.Name
+                });
+
+                List<SelectListItem> OptionList = options.ToList();
+
+                FinanceTrackerIndexViewModel indexViewModel = new FinanceTrackerIndexViewModel()
+                {
+                   
+                    selectListItems = OptionList,
+                    transactionListItems = transactions
+
+
+                };
                 
-                return View(transactions);
+                return View(indexViewModel);
 
             }
         }
@@ -109,6 +82,24 @@ namespace FinanceTracker.Controllers
             var temp = EditForm;
             return PartialView(EditForm);
         }
+
+        [HttpPost]
+        public IActionResult Create(TransactionCreateFormViewModel createForm)
+        {
+            if(!ModelState.IsValid)
+            {
+                // Constructing an object with the error message
+                var errorObject = new { error = "Invalid form" };
+
+                // Returning the error object as JSON
+                return Json(errorObject);
+            }
+            else{
+                return RedirectToAction("Index");
+            }
+        }
+
+        
     }
         
 

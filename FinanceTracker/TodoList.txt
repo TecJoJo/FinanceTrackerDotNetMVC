@@ -19,3 +19,8 @@ About the form to edit:
 			the form is seperate form with an edit controller which recieve the input.
 
 read the selection help tags https://learn.microsoft.com/en-us/aspnet/core/mvc/views/working-with-forms?view=aspnetcore-8.0#the-select-tag-helper
+
+
+Seems like first create the U of the CRUD is not wise as the technical vision is not yet that clear. I believe the world will open up quite 
+a bit after first discover how the Create funcitonize. 
+

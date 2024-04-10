@@ -1,26 +1,58 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\yaolu\\source\\repos\\FinanceTracker\\",
+  "WorkspaceRootPath": "C:\\Users\\yaolu\\Documents\\FinanceTrackerDotNetMVC\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{34AE106F-C0E8-449F-9540-4F867FA6614F}|FinanceTracker\\FinanceTracker.csproj|c:\\users\\yaolu\\source\\repos\\financetracker\\financetracker\\controllers\\financemanagercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{34AE106F-C0E8-449F-9540-4F867FA6614F}|FinanceTracker\\FinanceTracker.csproj|c:\\users\\yaolu\\documents\\financetrackerdotnetmvc\\financetracker\\controllers\\financemanagercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{34AE106F-C0E8-449F-9540-4F867FA6614F}|FinanceTracker\\FinanceTracker.csproj|solutionrelative:financetracker\\controllers\\financemanagercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{34AE106F-C0E8-449F-9540-4F867FA6614F}|FinanceTracker\\FinanceTracker.csproj|c:\\users\\yaolu\\source\\repos\\financetracker\\financetracker\\views\\financemanager\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{34AE106F-C0E8-449F-9540-4F867FA6614F}|FinanceTracker\\FinanceTracker.csproj|c:\\users\\yaolu\\documents\\financetrackerdotnetmvc\\financetracker\\viewmodel\\transactioncreateformviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{34AE106F-C0E8-449F-9540-4F867FA6614F}|FinanceTracker\\FinanceTracker.csproj|solutionrelative:financetracker\\viewmodel\\transactioncreateformviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{34AE106F-C0E8-449F-9540-4F867FA6614F}|FinanceTracker\\FinanceTracker.csproj|c:\\users\\yaolu\\documents\\financetrackerdotnetmvc\\financetracker\\views\\financemanager\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{34AE106F-C0E8-449F-9540-4F867FA6614F}|FinanceTracker\\FinanceTracker.csproj|solutionrelative:financetracker\\views\\financemanager\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{34AE106F-C0E8-449F-9540-4F867FA6614F}|FinanceTracker\\FinanceTracker.csproj|c:\\users\\yaolu\\source\\repos\\financetracker\\financetracker\\models\\category.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{34AE106F-C0E8-449F-9540-4F867FA6614F}|FinanceTracker\\FinanceTracker.csproj|solutionrelative:financetracker\\models\\category.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{34AE106F-C0E8-449F-9540-4F867FA6614F}|FinanceTracker\\FinanceTracker.csproj|c:\\users\\yaolu\\documents\\financetrackerdotnetmvc\\financetracker\\viewmodel\\financetrackerindexviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{34AE106F-C0E8-449F-9540-4F867FA6614F}|FinanceTracker\\FinanceTracker.csproj|solutionrelative:financetracker\\viewmodel\\financetrackerindexviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{34AE106F-C0E8-449F-9540-4F867FA6614F}|FinanceTracker\\FinanceTracker.csproj|c:\\users\\yaolu\\source\\repos\\financetracker\\financetracker\\models\\transaction.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{34AE106F-C0E8-449F-9540-4F867FA6614F}|FinanceTracker\\FinanceTracker.csproj|c:\\users\\yaolu\\documents\\financetrackerdotnetmvc\\financetracker\\controllers\\logincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{34AE106F-C0E8-449F-9540-4F867FA6614F}|FinanceTracker\\FinanceTracker.csproj|solutionrelative:financetracker\\controllers\\logincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{34AE106F-C0E8-449F-9540-4F867FA6614F}|FinanceTracker\\FinanceTracker.csproj|c:\\users\\yaolu\\documents\\financetrackerdotnetmvc\\financetracker\\models\\transaction.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{34AE106F-C0E8-449F-9540-4F867FA6614F}|FinanceTracker\\FinanceTracker.csproj|solutionrelative:financetracker\\models\\transaction.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{34AE106F-C0E8-449F-9540-4F867FA6614F}|FinanceTracker\\FinanceTracker.csproj|c:\\users\\yaolu\\source\\repos\\financetracker\\financetracker\\viewmodel\\transactionviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{34AE106F-C0E8-449F-9540-4F867FA6614F}|FinanceTracker\\FinanceTracker.csproj|c:\\users\\yaolu\\documents\\financetrackerdotnetmvc\\financetracker\\views\\financemanager\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{34AE106F-C0E8-449F-9540-4F867FA6614F}|FinanceTracker\\FinanceTracker.csproj|solutionrelative:financetracker\\views\\financemanager\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{34AE106F-C0E8-449F-9540-4F867FA6614F}|FinanceTracker\\FinanceTracker.csproj|c:\\users\\yaolu\\documents\\financetrackerdotnetmvc\\financetracker\\viewmodel\\transactionviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{34AE106F-C0E8-449F-9540-4F867FA6614F}|FinanceTracker\\FinanceTracker.csproj|solutionrelative:financetracker\\viewmodel\\transactionviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{34AE106F-C0E8-449F-9540-4F867FA6614F}|FinanceTracker\\FinanceTracker.csproj|c:\\users\\yaolu\\documents\\financetrackerdotnetmvc\\financetracker\\wwwroot\\js\\addtransactionmodal.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{34AE106F-C0E8-449F-9540-4F867FA6614F}|FinanceTracker\\FinanceTracker.csproj|solutionrelative:financetracker\\wwwroot\\js\\addtransactionmodal.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{34AE106F-C0E8-449F-9540-4F867FA6614F}|FinanceTracker\\FinanceTracker.csproj|c:\\users\\yaolu\\documents\\financetrackerdotnetmvc\\financetracker\\wwwroot\\js\\editformtoggle.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{34AE106F-C0E8-449F-9540-4F867FA6614F}|FinanceTracker\\FinanceTracker.csproj|solutionrelative:financetracker\\wwwroot\\js\\editformtoggle.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{34AE106F-C0E8-449F-9540-4F867FA6614F}|FinanceTracker\\FinanceTracker.csproj|c:\\users\\yaolu\\documents\\financetrackerdotnetmvc\\financetracker\\todolist.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{34AE106F-C0E8-449F-9540-4F867FA6614F}|FinanceTracker\\FinanceTracker.csproj|solutionrelative:financetracker\\todolist.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{34AE106F-C0E8-449F-9540-4F867FA6614F}|FinanceTracker\\FinanceTracker.csproj|c:\\users\\yaolu\\documents\\financetrackerdotnetmvc\\financetracker\\views\\financemanager\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{34AE106F-C0E8-449F-9540-4F867FA6614F}|FinanceTracker\\FinanceTracker.csproj|solutionrelative:financetracker\\views\\financemanager\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{34AE106F-C0E8-449F-9540-4F867FA6614F}|FinanceTracker\\FinanceTracker.csproj|c:\\users\\yaolu\\documents\\financetrackerdotnetmvc\\financetracker\\models\\category.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{34AE106F-C0E8-449F-9540-4F867FA6614F}|FinanceTracker\\FinanceTracker.csproj|solutionrelative:financetracker\\models\\category.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -29,9 +61,13 @@
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedWidth": 201,
+          "DockedWidth": 157,
           "SelectedChildIndex": 4,
           "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:73625283:0:{bf84ea66-d821-4dba-b1b1-2777d8574775}"
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:345686627:0:{bf84ea66-d821-4dba-b1b1-2777d8574775}"
@@ -39,64 +75,179 @@
             {
               "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "TransactionCreateFormViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\yaolu\\Documents\\FinanceTrackerDotNetMVC\\FinanceTracker\\ViewModel\\TransactionCreateFormViewModel.cs",
+              "RelativeDocumentMoniker": "FinanceTracker\\ViewModel\\TransactionCreateFormViewModel.cs",
+              "ToolTip": "C:\\Users\\yaolu\\Documents\\FinanceTrackerDotNetMVC\\FinanceTracker\\ViewModel\\TransactionCreateFormViewModel.cs",
+              "RelativeToolTip": "FinanceTracker\\ViewModel\\TransactionCreateFormViewModel.cs",
+              "ViewState": "AQIAAAQAAAAAAAAAAAAuwBIAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-10T11:27:52.471Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\Users\\yaolu\\source\\repos\\FinanceTracker\\FinanceTracker\\Views\\FinanceManager\\Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\yaolu\\Documents\\FinanceTrackerDotNetMVC\\FinanceTracker\\Views\\FinanceManager\\Index.cshtml",
               "RelativeDocumentMoniker": "FinanceTracker\\Views\\FinanceManager\\Index.cshtml",
-              "ToolTip": "C:\\Users\\yaolu\\source\\repos\\FinanceTracker\\FinanceTracker\\Views\\FinanceManager\\Index.cshtml",
+              "ToolTip": "C:\\Users\\yaolu\\Documents\\FinanceTrackerDotNetMVC\\FinanceTracker\\Views\\FinanceManager\\Index.cshtml",
               "RelativeToolTip": "FinanceTracker\\Views\\FinanceManager\\Index.cshtml",
-              "ViewState": "AQIAABEAAAAAAAAAAAAAACwAAAAAAAAA",
+              "ViewState": "AQIAADAAAAAAAAAAAAAAAEIAAABYAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2024-04-09T19:55:44.702Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Category.cs",
-              "DocumentMoniker": "C:\\Users\\yaolu\\source\\repos\\FinanceTracker\\FinanceTracker\\Models\\Category.cs",
-              "RelativeDocumentMoniker": "FinanceTracker\\Models\\Category.cs",
-              "ToolTip": "C:\\Users\\yaolu\\source\\repos\\FinanceTracker\\FinanceTracker\\Models\\Category.cs",
-              "RelativeToolTip": "FinanceTracker\\Models\\Category.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "DocumentIndex": 0,
+              "Title": "FinanceManagerController.cs",
+              "DocumentMoniker": "C:\\Users\\yaolu\\Documents\\FinanceTrackerDotNetMVC\\FinanceTracker\\Controllers\\FinanceManagerController.cs",
+              "RelativeDocumentMoniker": "FinanceTracker\\Controllers\\FinanceManagerController.cs",
+              "ToolTip": "C:\\Users\\yaolu\\Documents\\FinanceTrackerDotNetMVC\\FinanceTracker\\Controllers\\FinanceManagerController.cs",
+              "RelativeToolTip": "FinanceTracker\\Controllers\\FinanceManagerController.cs",
+              "ViewState": "AQIAAFEAAAAAAAAAAAAAwFcAAAAIAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-09T19:48:38.331Z",
+              "WhenOpened": "2024-04-09T19:45:43.215Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "Transaction.cs",
-              "DocumentMoniker": "C:\\Users\\yaolu\\source\\repos\\FinanceTracker\\FinanceTracker\\Models\\Transaction.cs",
-              "RelativeDocumentMoniker": "FinanceTracker\\Models\\Transaction.cs",
-              "ToolTip": "C:\\Users\\yaolu\\source\\repos\\FinanceTracker\\FinanceTracker\\Models\\Transaction.cs",
-              "RelativeToolTip": "FinanceTracker\\Models\\Transaction.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Title": "FinanceTrackerIndexViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\yaolu\\Documents\\FinanceTrackerDotNetMVC\\FinanceTracker\\ViewModel\\FinanceTrackerIndexViewModel.cs",
+              "RelativeDocumentMoniker": "FinanceTracker\\ViewModel\\FinanceTrackerIndexViewModel.cs",
+              "ToolTip": "C:\\Users\\yaolu\\Documents\\FinanceTrackerDotNetMVC\\FinanceTracker\\ViewModel\\FinanceTrackerIndexViewModel.cs",
+              "RelativeToolTip": "FinanceTracker\\ViewModel\\FinanceTrackerIndexViewModel.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAuwAcAAAAGAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-09T19:44:13.563Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-04-10T10:00:25.205Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "FinanceManagerController.cs",
-              "DocumentMoniker": "C:\\Users\\yaolu\\source\\repos\\FinanceTracker\\FinanceTracker\\Controllers\\FinanceManagerController.cs",
-              "RelativeDocumentMoniker": "FinanceTracker\\Controllers\\FinanceManagerController.cs",
-              "ToolTip": "C:\\Users\\yaolu\\source\\repos\\FinanceTracker\\FinanceTracker\\Controllers\\FinanceManagerController.cs",
-              "RelativeToolTip": "FinanceTracker\\Controllers\\FinanceManagerController.cs",
-              "ViewState": "AQIAADoAAAAAAAAAAAAowGIAAAAJAAAA",
+              "DocumentIndex": 4,
+              "Title": "LoginController.cs",
+              "DocumentMoniker": "C:\\Users\\yaolu\\Documents\\FinanceTrackerDotNetMVC\\FinanceTracker\\Controllers\\LoginController.cs",
+              "RelativeDocumentMoniker": "FinanceTracker\\Controllers\\LoginController.cs",
+              "ToolTip": "C:\\Users\\yaolu\\Documents\\FinanceTrackerDotNetMVC\\FinanceTracker\\Controllers\\LoginController.cs",
+              "RelativeToolTip": "FinanceTracker\\Controllers\\LoginController.cs",
+              "ViewState": "AQIAACEAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-09T19:45:43.215Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-04-10T09:57:05.281Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Transaction.cs",
+              "DocumentMoniker": "C:\\Users\\yaolu\\Documents\\FinanceTrackerDotNetMVC\\FinanceTracker\\Models\\Transaction.cs",
+              "RelativeDocumentMoniker": "FinanceTracker\\Models\\Transaction.cs",
+              "ToolTip": "C:\\Users\\yaolu\\Documents\\FinanceTrackerDotNetMVC\\FinanceTracker\\Models\\Transaction.cs",
+              "RelativeToolTip": "FinanceTracker\\Models\\Transaction.cs",
+              "ViewState": "AQIAAAoAAAAAAAAAAAAAABcAAAA3AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-09T19:44:13.563Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "AddTransactionModal.js",
+              "DocumentMoniker": "C:\\Users\\yaolu\\Documents\\FinanceTrackerDotNetMVC\\FinanceTracker\\wwwroot\\js\\AddTransactionModal.js",
+              "RelativeDocumentMoniker": "FinanceTracker\\wwwroot\\js\\AddTransactionModal.js",
+              "ToolTip": "C:\\Users\\yaolu\\Documents\\FinanceTrackerDotNetMVC\\FinanceTracker\\wwwroot\\js\\AddTransactionModal.js",
+              "RelativeToolTip": "FinanceTracker\\wwwroot\\js\\AddTransactionModal.js",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAAARAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2024-04-10T06:55:22.824Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "TransactionViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\yaolu\\Documents\\FinanceTrackerDotNetMVC\\FinanceTracker\\ViewModel\\TransactionViewModel.cs",
+              "RelativeDocumentMoniker": "FinanceTracker\\ViewModel\\TransactionViewModel.cs",
+              "ToolTip": "C:\\Users\\yaolu\\Documents\\FinanceTrackerDotNetMVC\\FinanceTracker\\ViewModel\\TransactionViewModel.cs",
+              "RelativeToolTip": "FinanceTracker\\ViewModel\\TransactionViewModel.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAArAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-10T08:45:28.804Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Create.cshtml",
+              "DocumentMoniker": "C:\\Users\\yaolu\\Documents\\FinanceTrackerDotNetMVC\\FinanceTracker\\Views\\FinanceManager\\Create.cshtml",
+              "RelativeDocumentMoniker": "FinanceTracker\\Views\\FinanceManager\\Create.cshtml",
+              "ToolTip": "C:\\Users\\yaolu\\Documents\\FinanceTrackerDotNetMVC\\FinanceTracker\\Views\\FinanceManager\\Create.cshtml",
+              "RelativeToolTip": "FinanceTracker\\Views\\FinanceManager\\Create.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAjAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-04-10T07:24:21.974Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "Category.cs",
+              "DocumentMoniker": "C:\\Users\\yaolu\\Documents\\FinanceTrackerDotNetMVC\\FinanceTracker\\Models\\Category.cs",
+              "RelativeDocumentMoniker": "FinanceTracker\\Models\\Category.cs",
+              "ToolTip": "C:\\Users\\yaolu\\Documents\\FinanceTrackerDotNetMVC\\FinanceTracker\\Models\\Category.cs",
+              "RelativeToolTip": "FinanceTracker\\Models\\Category.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-09T19:48:38.331Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "EditFormToggle.js",
+              "DocumentMoniker": "C:\\Users\\yaolu\\Documents\\FinanceTrackerDotNetMVC\\FinanceTracker\\wwwroot\\js\\EditFormToggle.js",
+              "RelativeDocumentMoniker": "FinanceTracker\\wwwroot\\js\\EditFormToggle.js",
+              "ToolTip": "C:\\Users\\yaolu\\Documents\\FinanceTrackerDotNetMVC\\FinanceTracker\\wwwroot\\js\\EditFormToggle.js",
+              "RelativeToolTip": "FinanceTracker\\wwwroot\\js\\EditFormToggle.js",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAqwAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2024-04-10T06:37:36.113Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "TodoList.txt",
+              "DocumentMoniker": "C:\\Users\\yaolu\\Documents\\FinanceTrackerDotNetMVC\\FinanceTracker\\TodoList.txt",
+              "RelativeDocumentMoniker": "FinanceTracker\\TodoList.txt",
+              "ToolTip": "C:\\Users\\yaolu\\Documents\\FinanceTrackerDotNetMVC\\FinanceTracker\\TodoList.txt",
+              "RelativeToolTip": "FinanceTracker\\TodoList.txt",
+              "ViewState": "AQIAAAEAAAAAAAAAAAAgwBoAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
+              "WhenOpened": "2024-04-10T06:35:27.891Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Edit.cshtml",
+              "DocumentMoniker": "C:\\Users\\yaolu\\Documents\\FinanceTrackerDotNetMVC\\FinanceTracker\\Views\\FinanceManager\\Edit.cshtml",
+              "RelativeDocumentMoniker": "FinanceTracker\\Views\\FinanceManager\\Edit.cshtml",
+              "ToolTip": "C:\\Users\\yaolu\\Documents\\FinanceTrackerDotNetMVC\\FinanceTracker\\Views\\FinanceManager\\Edit.cshtml",
+              "RelativeToolTip": "FinanceTracker\\Views\\FinanceManager\\Edit.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-04-10T06:36:22.212Z"
             }
           ]
         },
         {
-          "DockedWidth": 76,
-          "SelectedChildIndex": 3,
+          "DockedWidth": 120,
+          "SelectedChildIndex": -1,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:3:0:{fabf9319-47eb-497e-b8f6-d9f73fba5f55}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:343136560:0:{bf84ea66-d821-4dba-b1b1-2777d8574775}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:1:0:{fabf9319-47eb-497e-b8f6-d9f73fba5f55}"
             },
             {
               "$type": "Bookmark",
@@ -105,19 +256,6 @@
             {
               "$type": "Bookmark",
               "Name": "ST:4:0:{fabf9319-47eb-497e-b8f6-d9f73fba5f55}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "TransactionViewModel.cs",
-              "DocumentMoniker": "C:\\Users\\yaolu\\source\\repos\\FinanceTracker\\FinanceTracker\\ViewModel\\TransactionViewModel.cs",
-              "RelativeDocumentMoniker": "FinanceTracker\\ViewModel\\TransactionViewModel.cs",
-              "ToolTip": "C:\\Users\\yaolu\\source\\repos\\FinanceTracker\\FinanceTracker\\ViewModel\\TransactionViewModel.cs",
-              "RelativeToolTip": "FinanceTracker\\ViewModel\\TransactionViewModel.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-09T19:44:22.638Z",
-              "EditorCaption": ""
             }
           ]
         }

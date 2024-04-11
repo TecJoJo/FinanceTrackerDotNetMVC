@@ -1,0 +1,20 @@
+﻿@using FinanceTracker.ViewModel
+@model TransactionEditFormViewModel
+
+<form asp-controller="FinanceManager" asp-action="Edit" method="post">
+    <div class="row">
+        <input asp-for="amount" type="number" class="form-control" placeholder="Amount:">
+        <textarea asp-for="description" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="description"></textarea>
+        <select class="form-control" asp-for="CategoryId" asp-items="Model.selectListItems">
+        </select>
+        <label asp-for="TimeStamp">Time</label>
+
+        <input asp-for="TimeStamp" />
+        <div class="col-1">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+
+        <input type="hidden" asp-for="TransactionId"/>
+        
+    </div>
+</form>

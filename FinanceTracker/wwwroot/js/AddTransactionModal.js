@@ -4,12 +4,12 @@ modalToggler.addEventListener("click", handleToggle)
 const modal = document.getElementById("createModal")
 console.log("ModalContent", modal)
 function handleToggle() {
-    fetchData().then((data) => {
+    fetchCreateForm().then((data) => {
         modal.innerHTML=data
     })
 }
 
-async function fetchData() {
+async function fetchCreateForm() {
     console.log("clicked")
     const response = await fetch("/FinanceManager/Create")
     console.log(response)

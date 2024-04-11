@@ -66,17 +66,67 @@ namespace FinanceTracker.Controllers
 
             }
         }
-
-        public IActionResult Edit()
+        [HttpPost]
+        public IActionResult FetchEditForm([FromBody] string transactionId)
         {
-            return PartialView();
+            
+            var options = _dbContext.Categories.Select(e => new SelectListItem()
+            {
+                Value = e.CategoryId.ToString(),
+                Text = e.Name
+            });
+
+            List<SelectListItem> OptionList = options.ToList();
+
+            TransactionEditFormViewModel editForm = new TransactionEditFormViewModel()
+            {
+                TransactionId = int.Parse(transactionId),
+                selectListItems = OptionList,
+
+
+            };
+            return PartialView(editForm);
         }
 
         [HttpPost]
         public IActionResult Edit(TransactionEditFormView EditForm)
         {
-            var temp = EditForm;
-            return PartialView(EditForm);
+
+            if (!ModelState.IsValid)
+            {
+                // Constructing an object with the error message
+                var errorObject = new { error = "Invalid form" };
+
+                // Returning the error object as JSON
+                return Json(errorObject);
+            }
+            else
+            {
+                var entityToUpdate = _dbContext.Transactions.Find(EditForm.TransactionId);
+
+                if(entityToUpdate != null)
+                {
+
+                entityToUpdate.amount = EditForm.Amount;
+                entityToUpdate.description = EditForm.Description;
+                entityToUpdate.CategoryId = EditForm.CategoryId;
+                entityToUpdate.TimeStamp = EditForm.TimeStemp;
+
+                    _dbContext.SaveChanges();
+                }
+                else
+                {
+                    // Constructing an object with the error message
+                    var errorObject = new { error = "transaction is not found" };
+
+                    // Returning the error object as JSON
+                    return Json(errorObject);
+                }
+
+            return RedirectToAction("Index");
+            }
+
+            
         }
 
 
@@ -96,38 +146,70 @@ namespace FinanceTracker.Controllers
             return PartialView(createForm); 
         }
 
-        //[HttpPost]
-        //public IActionResult Create(TransactionCreateFormViewModel createForm)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        // Constructing an object with the error message
-        //        var errorObject = new { error = "Invalid form" };
+        [HttpPost]
+        public IActionResult Create(TransactionCreateFormViewModel createForm)
+        {
+            int? customerId =  _userService.fetchUser();
+            if (!ModelState.IsValid)
+            {
+                // Constructing an object with the error message
+                var errorObject = new { error = "Invalid form" };
 
-        //        // Returning the error object as JSON
-        //        return Json(errorObject);
+                // Returning the error object as JSON
+                return Json(errorObject);
 
-                
-        //    }
-        //    else
-        //    {
-                
-        //        //add the new entity into the db 
-        //        _dbContext.Add(new Transaction()
-        //        {
-        //            TimeStamp = createForm.TimeStamp,
-        //            amount = createForm.amount,
-        //            description = createForm.description ?? string.Empty,
-        //            CategoryId = createForm.CategoryId,
-        //            CustomerId = customerId,
-                    
-                    
-        //        });
-        //        _dbContext.SaveChanges();
-        //        return RedirectToAction("Index");
-        //    }
-        //}
 
+            }
+            else
+            {
+                if (customerId == null)
+                {
+                    // Constructing an object with the error message
+                    var errorObject = new { error = "CustomerId is missing, make sure you have logged in" };
+
+                    // Returning the error object as JSON
+                    return Json(errorObject);
+                }
+                //add the new entity into the db 
+                else
+                {
+
+                _dbContext.Add(new Transaction()
+                {
+                    TimeStamp = createForm.TimeStamp,
+                    amount = createForm.amount,
+                    description = createForm.description ?? string.Empty,
+                    CategoryId = createForm.CategoryId,
+                    CustomerId = (int)customerId,
+
+
+                });
+                _dbContext.SaveChanges();
+                return RedirectToAction("Index");
+                }
+            }
+        }
+
+        [HttpPost]
+        public IActionResult Delete([FromBody] string transactionId)
+        {
+            var id = int.Parse(transactionId);
+            var transactionToDelete = _dbContext.Transactions.Find(id);
+            if (transactionToDelete != null)
+            {
+                _dbContext.Transactions.Remove(transactionToDelete);
+                _dbContext.SaveChanges();
+                return View("Index");
+            }
+            else
+            {
+                // Constructing an object with the error message
+                var errorObject = new { error = "transaction is not found" };
+
+                // Returning the error object as JSON
+                return Json(errorObject);
+            }
+        }
     }
         
 

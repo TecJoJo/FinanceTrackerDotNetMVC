@@ -7,18 +7,24 @@ editBtns.forEach(btn => btn.addEventListener("click", handleClick))
 function handleClick (e) {
     console.log("event: ", e)
     console.log("target: ", e.target)
+    const transactionId = e.target.dataset.id
+    console.log("transactionId", transactionId)
+
     const editContainer = e.target.closest('li').nextElementSibling;
     console.log("editContainer", editContainer)
-    fetchData().then((data) => {
+    fetchEditForm(transactionId).then((data) => {
+        
         editContainer.innerHTML = data
     })
 
     
 }
 
-async function fetchData() {
-    const response = await fetch("/FinanceManager/edit", {
-        method: "GET",
+async function fetchEditForm(transactionId) {
+    const response = await fetch("/FinanceManager/FetchEditForm", {
+        method: "POST",
+        headers: { 'Content-Type': 'application/json', },
+        body: JSON.stringify( transactionId )
         
         
     })

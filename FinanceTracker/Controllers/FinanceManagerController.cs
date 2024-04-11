@@ -1,4 +1,5 @@
 ﻿using FinanceTracker.Models;
+using FinanceTracker.Services;
 using FinanceTracker.ViewModel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -14,19 +15,20 @@ namespace FinanceTracker.Controllers
     {
         private readonly ApplicationDbContext _dbContext;
 
-        public FinanceManagerController(ApplicationDbContext dbContext)
+        private readonly UserService _userService;
+      
+        public FinanceManagerController(ApplicationDbContext dbContext, UserService userService)
         {
 
             _dbContext = dbContext;
+            _userService = userService; 
         }
         [Authorize]
         public IActionResult Index()
         {
-            var customerIdString = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
 
-            int.TryParse(customerIdString, out int customerId);
-
-            if (customerIdString == null)
+            int? customerId = _userService.fetchUser();
+            if (customerId == null )
             {
 
                 return View();
@@ -94,24 +96,37 @@ namespace FinanceTracker.Controllers
             return PartialView(createForm); 
         }
 
-        [HttpPost]
-        public IActionResult Create(TransactionCreateFormViewModel createForm)
-        {
-            if (!ModelState.IsValid)
-            {
-                // Constructing an object with the error message
-                var errorObject = new { error = "Invalid form" };
+        //[HttpPost]
+        //public IActionResult Create(TransactionCreateFormViewModel createForm)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        // Constructing an object with the error message
+        //        var errorObject = new { error = "Invalid form" };
 
-                // Returning the error object as JSON
-                return Json(errorObject);
+        //        // Returning the error object as JSON
+        //        return Json(errorObject);
 
-
-            }
-            else
-            {
-                return RedirectToAction("Index");
-            }
-        }
+                
+        //    }
+        //    else
+        //    {
+                
+        //        //add the new entity into the db 
+        //        _dbContext.Add(new Transaction()
+        //        {
+        //            TimeStamp = createForm.TimeStamp,
+        //            amount = createForm.amount,
+        //            description = createForm.description ?? string.Empty,
+        //            CategoryId = createForm.CategoryId,
+        //            CustomerId = customerId,
+                    
+                    
+        //        });
+        //        _dbContext.SaveChanges();
+        //        return RedirectToAction("Index");
+        //    }
+        //}
 
     }
         

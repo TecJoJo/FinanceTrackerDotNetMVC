@@ -13,7 +13,8 @@ namespace FinanceTracker.ViewModel
 
         public decimal amount { get; set; }
 
-        public string description { get; set; } = string.Empty;
+        
+        public string? description { get; set; } = string.Empty;
 
 
 

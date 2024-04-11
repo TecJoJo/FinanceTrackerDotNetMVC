@@ -1,5 +1,6 @@
 using FinanceTracker.Data;
 using FinanceTracker.Models;
+using FinanceTracker.Services;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 
@@ -19,6 +20,8 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
     }
 
     );
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddScoped<UserService>();
 var app = builder.Build();
 
 using (var scope = app.Services.CreateScope())

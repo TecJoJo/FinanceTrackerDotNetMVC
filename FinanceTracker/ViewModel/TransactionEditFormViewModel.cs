@@ -6,7 +6,7 @@ namespace FinanceTracker.ViewModel
     public class TransactionEditFormViewModel
     {
         [DataType(DataType.DateTime)]
-        public DateTime TimeStamp { get; set; } = DateTime.Now;
+        public DateTime? TimeStamp { get; set; } 
 
         public decimal amount { get; set; }
 

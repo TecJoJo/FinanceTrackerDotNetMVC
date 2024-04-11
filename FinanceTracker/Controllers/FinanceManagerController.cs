@@ -78,10 +78,22 @@ namespace FinanceTracker.Controllers
 
             List<SelectListItem> OptionList = options.ToList();
 
+
+            int transactionIdNumber = int.Parse(transactionId);
+
+            var transaction = _dbContext.Transactions.Find(transactionIdNumber);
+
+
             TransactionEditFormViewModel editForm = new TransactionEditFormViewModel()
             {
-                TransactionId = int.Parse(transactionId),
                 selectListItems = OptionList,
+                TimeStamp = transaction.TimeStamp,
+                amount = transaction.amount,
+                description = transaction.description,
+                CategoryId = transaction.CategoryId,
+                TransactionId = transactionIdNumber
+                
+
 
 
             };

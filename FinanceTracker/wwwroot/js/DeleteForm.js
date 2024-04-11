@@ -7,22 +7,25 @@ function handleDeleteClick(e) {
     const transactionId = e.target.dataset.id
     console.log("transactionId", transactionId)
 
-    
-    deleteRequest(transactionId)
 
-
-}
-
-async function deleteRequest(transactionId) {
-    fetch("/FinanceManager/Delete", {
-        method: "POST",
-        headers: { 'Content-Type': 'application/json', },
+    fetch('/FinanceManager/Delete', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
         body: JSON.stringify(transactionId)
-
-
     })
-
-    
+        .then(response => response.json()) // Parse the JSON from the response
+        .then(data => {
+            if (data.success) {
+                location.reload(); // Refresh the page
+            } else {
+                // Handle error
+                console.error(data.message);
+            }
+        })
+        .catch(error => console.error('Error:', error));
 
 
 }
+

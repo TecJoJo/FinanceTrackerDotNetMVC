@@ -199,15 +199,15 @@ namespace FinanceTracker.Controllers
             {
                 _dbContext.Transactions.Remove(transactionToDelete);
                 _dbContext.SaveChanges();
-                return View("Index");
+                return Ok(new { status = 200, message = "Transaction deleted successfully", success = true });
             }
             else
             {
                 // Constructing an object with the error message
-                var errorObject = new { error = "transaction is not found" };
+                var errorObject = new { status = 404, message = "Transaction not found", error = true };
 
                 // Returning the error object as JSON
-                return Json(errorObject);
+                return NotFound(errorObject);
             }
         }
     }

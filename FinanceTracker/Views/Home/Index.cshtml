@@ -8,6 +8,7 @@
 
 
 
+
 @if (User.Identity.IsAuthenticated)
 {
     <h1>Welcome @User.FindFirst("userName").Value
@@ -25,3 +26,55 @@ else
 {
     <h1>hello, Please log in first</h1>
 }
+
+<div>
+    <canvas id="myChart"></canvas>
+</div>
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/js/chart441.js"></script>
+<script >
+        
+    
+    const ctx = document.getElementById('myChart');
+
+    const data = {
+        labels: ["first","second","third"],
+        datasets: [
+            {
+                label: 'Dataset 1',
+                data: [7,3,1],
+                borderColor: "red",
+                backgroundColor: "red",
+            },
+            {
+                label: 'Dataset 2',
+                data: [4,5,2],
+                borderColor: "blue",
+                backgroundColor: "blue",
+            }
+        ]
+    };
+
+    const config = {
+        type: 'line',
+        data: data,
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'top',
+                },
+                title: {
+                    display: true,
+                    text: 'Chart.js Line Chart'
+                }
+            }
+        },
+    };
+   
+    new Chart(ctx,config)
+
+ 
+    
+</script>

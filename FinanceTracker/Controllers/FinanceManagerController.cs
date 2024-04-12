@@ -10,7 +10,7 @@ using System.Security.Claims;
 
 namespace FinanceTracker.Controllers
 {
-
+    [Authorize(Roles ="admin,user")]
     public class FinanceManagerController : Controller
     {
         private readonly ApplicationDbContext _dbContext;
@@ -23,7 +23,7 @@ namespace FinanceTracker.Controllers
             _dbContext = dbContext;
             _userService = userService; 
         }
-        [Authorize]
+        
         public IActionResult Index()
         {
 
@@ -168,7 +168,8 @@ namespace FinanceTracker.Controllers
                 var errorObject = new { error = "Invalid form" };
 
                 // Returning the error object as JSON
-                return Json(errorObject);
+                //return Json(errorObject);   
+                return View(new FinanceTrackerIndexViewModel());
 
 
             }

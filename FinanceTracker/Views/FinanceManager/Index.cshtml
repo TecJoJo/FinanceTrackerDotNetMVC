@@ -7,8 +7,10 @@
 
 @model FinanceTrackerIndexViewModel
 
+@{
 
-
+var model = Model;
+}
 
 @if (User.Identity.IsAuthenticated)
 {
@@ -39,8 +41,13 @@
             @*<button type="button" id="ModalToggler" class="btn btn-primary">New Transaction</button>*@
             <p class="display-2">Recent Transactions</p>
             <ul class="list-group">
-
-                @foreach (TransactionViewModel transaction in Model.transactionListItems)
+                @if(Model.transactionListItems.Count == 0)
+                {
+                    <h1>Hi, it was a great day!</h1>
+                }else
+                {
+                    
+                foreach (TransactionViewModel transaction in Model.transactionListItems)
                 {
                     <li class="list-group-item @(transaction.Type == "Income"?"list-group-item-primary":"list-group-item-warning") d-flex justify-content-around">
                         <p class="w-75 m-auto">@(transaction.Type.ToUpper()): @(transaction.Amount)€ at @(transaction.TimeStamp) for @(transaction.Category)</p>
@@ -48,6 +55,7 @@
                     </li>
                     <div id="editContainer"></div>
                     
+                }
                 }
 
 

@@ -22,6 +22,7 @@ namespace FinanceTracker.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Index(LoginViewModel loginViewModel)
         {
             if (!ModelState.IsValid)

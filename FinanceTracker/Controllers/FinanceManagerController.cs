@@ -101,7 +101,7 @@ namespace FinanceTracker.Controllers
         }
 
         [HttpPost]
-        public IActionResult Edit(TransactionEditFormView EditForm)
+        public IActionResult Edit(TransactionEditFormViewModel EditForm)
         {
 
             if (!ModelState.IsValid)
@@ -119,10 +119,10 @@ namespace FinanceTracker.Controllers
                 if(entityToUpdate != null)
                 {
 
-                entityToUpdate.amount = EditForm.Amount;
-                entityToUpdate.description = EditForm.Description;
+                entityToUpdate.amount = EditForm.amount;
+                entityToUpdate.description = EditForm.description;
                 entityToUpdate.CategoryId = EditForm.CategoryId;
-                entityToUpdate.TimeStamp = EditForm.TimeStemp;
+                entityToUpdate.TimeStamp = EditForm.TimeStamp;
 
                     _dbContext.SaveChanges();
                 }

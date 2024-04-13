@@ -1,12 +1,17 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
-@model Customer
 
 @using System.Security.Claims
 @using FinanceTracker.Models.Enums
+@using FinanceTracker.ViewModel
 
+@model FinanceTrackerIndexViewModel
 
+@{
+    var labels = Model?.transactionListItems.Select(transaction => transaction.TimeStamp.ToShortDateString());
+    var transactionAmount = Model?.transactionListItems.Select(transaction => transaction.Amount);
+}
 
 
 @if (User.Identity.IsAuthenticated)
@@ -14,12 +19,19 @@
     <h1>Welcome @User.FindFirst("userName").Value
     </h1>
     var adminString = Enum.GetName(typeof(Role), Role.admin)!;
-    @if (User.FindFirst(ClaimTypes.Role).Value == adminString)
+    var userString = Enum.GetName(typeof(Role), Role.user)!;
+    @if (User.FindFirst(ClaimTypes.Role).Value == adminString || User.FindFirst(ClaimTypes.Role).Value == userString)
     {
-        <h1>the fancy chart is here</h1>
+        <div>
+            <canvas id="myChart"></canvas>
+        </div>
+    }
+    else
+    {
+      <h1>You are visiting with an visitor account which have no access to the Finance Compass, please upgrade your plan</h1>
     }
 
-   
+
 
 }
 else
@@ -27,32 +39,32 @@ else
     <h1>hello, Please log in first</h1>
 }
 
-<div>
-    <canvas id="myChart"></canvas>
-</div>
+
 
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script src="~/js/chart441.js"></script>
 <script >
+
+
         
     
     const ctx = document.getElementById('myChart');
 
     const data = {
-        labels: ["first","second","third"],
+        labels: @Html.Raw(Json.Serialize(labels)),
         datasets: [
             {
-                label: 'Dataset 1',
-                data: [7,3,1],
+                label: 'Transactions',
+                data: @Html.Raw(Json.Serialize(transactionAmount)),
                 borderColor: "red",
-                backgroundColor: "red",
-            },
-            {
-                label: 'Dataset 2',
-                data: [4,5,2],
-                borderColor: "blue",
                 backgroundColor: "blue",
             }
+            // {
+            //     label: 'Dataset 2',
+            //     data: [4,5,2],
+            //     borderColor: "blue",
+            //     backgroundColor: "blue",
+            // }
         ]
     };
 
@@ -67,7 +79,7 @@ else
                 },
                 title: {
                     display: true,
-                    text: 'Chart.js Line Chart'
+                    text: 'Transaction Trend'
                 }
             }
         },

@@ -1,4 +1,5 @@
 using FinanceTracker.Models;
+using FinanceTracker.ViewModel;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
@@ -31,12 +32,31 @@ namespace FinanceTracker.Controllers
             }
             else
             {
-                //var customer = _dbContext.Customers
-                //                 .Include(c => c.Incomes) // Include related Orders
-                //                 .Include(c => c.Expenses) // Include related Orders
-                //                 .FirstOrDefault(e => e.CustomerId == customerId);
+                var transactions = _dbContext.Transactions.Where(e => e.CustomerId == customerId)
+                                           .OrderByDescending(e => e.TimeStamp)
+                                           .Include(e => e.Category)
+                                           .Select(e => new TransactionViewModel()
+                                           {
+                                               TimeStamp = e.TimeStamp,
+                                               Amount = e.amount,
+                                               Description = e.description,
+                                               Id = e.TransactionId,
+                                               Type = e.Category.type.ToString()
 
-                return View();
+                                           }).ToList();
+
+
+
+                FinanceTrackerIndexViewModel indexViewModel = new FinanceTrackerIndexViewModel()
+                {
+
+
+                    transactionListItems = transactions
+
+
+                };
+
+                return View(indexViewModel);
 
             }
         }

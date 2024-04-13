@@ -168,8 +168,8 @@ namespace FinanceTracker.Controllers
                 var errorObject = new { error = "Invalid form" };
 
                 // Returning the error object as JSON
-                //return Json(errorObject);   
-                return View(new FinanceTrackerIndexViewModel());
+                return Json(errorObject);
+
 
 
             }

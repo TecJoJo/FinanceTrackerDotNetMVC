@@ -14,10 +14,10 @@
 
 improve ment 
 [ x ]Create and edit partial view 
-[  ]Admin edit role
-[  ]password encryption 
-[  ]separate line for income and expense
+[ x ]Admin edit role
 []pie chart
+[  ]separate line for income and expense
+[  ]password encryption 
 []transaction list to table 
 []intruduce balance 
 []add category 

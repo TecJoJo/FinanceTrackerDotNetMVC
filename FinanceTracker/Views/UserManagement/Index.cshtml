@@ -12,15 +12,15 @@
         
     <tr>
         <form asp-controller="UserManagement" asp-action="Edit">
-            <td><input type="text" name="UserName" value=@user.UserName></td>
-            <td><input type="email" name="Email" value=@user.Email></td>
-            <td><input type="text" name="Password" value=@user.Password></td>
-            <td><input type="email" name="FirstName" value=@user.FirstName></td>
-            <td><input type="email" name="LastName" value=@user.LastName></td>
+            <td><input class="form-control border-0 border-bottom" type="text" name="UserName" value=@user.UserName></td>
+            <td><input class="form-control border-0 border-bottom" type="email" name="Email" value=@user.Email></td>
+            <td><input class="form-control border-0 border-bottom" type="text" name="Password" value=@user.Password></td>
+            <td><input class="form-control border-0 border-bottom" type="text" name="FirstName" value=@user.FirstName></td>
+            <td><input class="form-control border-0 border-bottom" type="text" name="LastName" value=@user.LastName></td>
             
             <td>
 
-            <select name="Role" >
+                <select name="Role" class="form-control border-0 border-bottom">
                         @foreach (string roleName in Enum.GetNames(typeof(Role)))
                         {
                             if (roleName == user.Role.ToString())
@@ -35,7 +35,7 @@
                 
             </select>
             </td>
-        <td><input type="submit" value="Submit"></td>
+        <td><input id="UserManagementSubmit" class="btn btn-warning" type="submit" value="Confirm Change"></td>
             <td><input type="hidden" name="CustomerId" value = @user.CustomerId /></td>
 
         </form>
@@ -44,3 +44,4 @@
     
     <!-- Repeat the form for each row as needed -->
 </table>
+

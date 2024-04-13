@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using FinanceTracker.Attribute;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System.ComponentModel.DataAnnotations;
 
 namespace FinanceTracker.ViewModel
@@ -6,8 +7,9 @@ namespace FinanceTracker.ViewModel
     public class TransactionEditFormViewModel
     {
         [DataType(DataType.DateTime)]
-        public DateTime TimeStamp { get; set; } 
+        public DateTime TimeStamp { get; set; }
 
+        [AmountCategoryValidationForEdit]
         public decimal amount { get; set; }
 
 

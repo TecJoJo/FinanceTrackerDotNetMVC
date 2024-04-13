@@ -11,6 +11,7 @@ namespace FinanceTracker.ViewModel
         [DataType(DataType.DateTime)]
         public DateTime TimeStamp { get; set; } = DateTime.Now;
 
+        [AmountCategoryValidation]
         public decimal amount { get; set; }
 
        

@@ -16,8 +16,9 @@ improve ment
 [ x ]Create and edit partial view 
 [ x ]Admin edit role
 []pie chart
-[  ]separate line for income and expense
-[  ]password encryption 
-[]transaction list to table 
 []intruduce balance 
+ []form validation ajax
+[]transaction list to table 
+[  ]password encryption 
 []add category 
+[  ]separate line for income and expense

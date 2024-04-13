@@ -24,7 +24,10 @@
     @if (User.FindFirst(ClaimTypes.Role).Value == adminString || User.FindFirst(ClaimTypes.Role).Value == userString)
     {
         <div>
-            <canvas id="myChart"></canvas>
+            <canvas id="lineChart"></canvas>
+        </div>
+        <div>
+            <canvas id="pieChart"></canvas>
         </div>
     }
     else
@@ -49,7 +52,7 @@ else
 
         
     
-    const ctx = document.getElementById('myChart');
+    const ctx1 = document.getElementById('lineChart');
 
     const data = {
         labels: @Html.Raw(Json.Serialize(labels)),
@@ -60,12 +63,7 @@ else
                 borderColor: "blue",
                 backgroundColor: "yellow",
             }
-            // {
-            //     label: 'Dataset 2',
-            //     data: [4,5,2],
-            //     borderColor: "blue",
-            //     backgroundColor: "blue",
-            // }
+            
         ]
     };
 
@@ -86,8 +84,22 @@ else
         },
     };
    
-    new Chart(ctx,config)
+    new Chart(ctx1,config)
 
+    // const ctx2 = document.getElementById('pieChart');
  
+    // const DATA_COUNT = 5;
+    // const NUMBER_CFG = { count: DATA_COUNT, min: 0, max: 100 };
+
+    // const data = {
+    //     labels: ['Red', 'Orange', 'Yellow', 'Green', 'Blue'],
+    //     datasets: [
+    //         {
+    //             label: 'Dataset 1',
+    //             data: Utils.numbers(NUMBER_CFG),
+    //             backgroundColor: Object.values(Utils.CHART_COLORS),
+    //         }
+    //     ]
+    // };
     
 </script>

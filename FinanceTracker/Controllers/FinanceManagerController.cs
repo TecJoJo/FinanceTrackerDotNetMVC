@@ -113,7 +113,7 @@ namespace FinanceTracker.Controllers
                 var errorObject = new { error = "Invalid form" };
 
                 // Returning the error object as JSON
-                return Json(errorObject);
+                return RedirectToAction("Error", errorObject);
             }
             else
             {
@@ -172,7 +172,7 @@ namespace FinanceTracker.Controllers
                 var errorObject = new { error = "Invalid form" };
 
                 // Returning the error object as JSON
-                return Json(errorObject);
+                return RedirectToAction("Error", errorObject);
 
 
 
@@ -226,6 +226,12 @@ namespace FinanceTracker.Controllers
                 // Returning the error object as JSON
                 return NotFound(errorObject);
             }
+        }
+
+        public IActionResult Error(string error)
+        {
+            ViewData["error"] = error;
+            return View();
         }
     }
         

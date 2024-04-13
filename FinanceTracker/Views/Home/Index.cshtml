@@ -9,8 +9,9 @@
 @model FinanceTrackerIndexViewModel
 
 @{
-    var labels = Model?.transactionListItems.Select(transaction => transaction.TimeStamp.ToShortDateString());
-    var transactionAmount = Model?.transactionListItems.Select(transaction => transaction.Amount);
+    var transactions = Model?.transactionListItems.OrderBy(t => t.TimeStamp);
+    var labels = transactions?.Select(transaction => transaction.TimeStamp.ToShortDateString());
+    var transactionAmount = transactions?.Select(transaction => transaction.Amount);
 }
 
 
@@ -56,8 +57,8 @@ else
             {
                 label: 'Transactions',
                 data: @Html.Raw(Json.Serialize(transactionAmount)),
-                borderColor: "red",
-                backgroundColor: "blue",
+                borderColor: "blue",
+                backgroundColor: "yellow",
             }
             // {
             //     label: 'Dataset 2',

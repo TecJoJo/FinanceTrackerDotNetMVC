@@ -4,7 +4,7 @@
 const editBtns = document.querySelectorAll("#editBtn")
 editBtns.forEach(btn => btn.addEventListener("click", handleClick))
 //editBtn.addEventListener("click", handleClick)
-function handleClick (e) {
+function handleClick(e) {
     console.log("event: ", e)
     console.log("target: ", e.target)
     const transactionId = e.target.dataset.id
@@ -13,11 +13,10 @@ function handleClick (e) {
     const editContainer = e.target.closest('li').nextElementSibling;
     console.log("editContainer", editContainer)
     fetchEditForm(transactionId).then((data) => {
-        
         editContainer.innerHTML = data
+        // Show the modal after the fetch request completes and the modal's HTML has been added to the DOM
+        $('#editModal').modal('show');
     })
-
-    
 }
 
 async function fetchEditForm(transactionId) {

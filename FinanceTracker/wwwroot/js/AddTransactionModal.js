@@ -3,7 +3,8 @@ const modal = document.getElementById("createModal")
 console.log("ModalContent", modal)
 
 fetchCreateForm().then((data) => {
-    modal.innerHTML=data
+    modal.innerHTML = data
+    
 })
 
 

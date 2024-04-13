@@ -63,6 +63,41 @@ namespace FinanceTracker.Controllers
             return RedirectToAction("Index");
         }
 
+        public IActionResult Register () {
+        
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Register(RegisterViewModel registerForm)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(registerForm);
+            }
+            else
+            {
+                _dbContext.Customers.Add(
+                    new Customer
+                    {
+                        UserName = registerForm.UserName,
+                        Email = registerForm.Email,
+                        Password = registerForm.Password,
+                        Role = Models.Enums.Role.user,
+                        Balance = 0,
+
+                       
+                    }
+
+                    );
+                _dbContext.SaveChanges(); 
+                return RedirectToAction("Index");
+            }
+
+            
+           
+
+        }
 
 
     }

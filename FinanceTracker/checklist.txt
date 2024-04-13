@@ -1,0 +1,12 @@
+[ x ]Routing
+[ x ]Authorization
+[ x ]Authentication
+[ x ]Model passing to views
+[ x ]Viewmodels
+[ - ]Form validation (Model attribute based)
+[ - ]Anti-forgery token validation
+[ x ]Partial views
+[ x ]Ajax call
+[ x ]Data visualization library
+[ x ]A database (SQL or Mongo)
+[ ]Optional: Blazor component

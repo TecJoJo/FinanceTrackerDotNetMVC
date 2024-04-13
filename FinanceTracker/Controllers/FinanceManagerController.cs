@@ -47,7 +47,9 @@ namespace FinanceTracker.Controllers
                                                 Amount = e.amount,
                                                 Description = e.description,
                                                 Id = e.TransactionId,
-                                                Type = e.Category.type.ToString()
+                                                Type = e.Category.type.ToString(),
+                                                Category = e.Category.Name,
+                                               
 
                                             }).ToList();
 

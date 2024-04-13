@@ -13,8 +13,9 @@
 
 
 improve ment 
-[   ]Create and edit partial view 
-[]Admin edit role
+[ x ]Create and edit partial view 
+[  ]Admin edit role
+[  ]password encryption 
 [  ]separate line for income and expense
 []pie chart
 []transaction list to table 

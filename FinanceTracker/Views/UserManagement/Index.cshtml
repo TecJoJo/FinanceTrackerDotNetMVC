@@ -1,4 +1,5 @@
-﻿@using FinanceTracker.ViewModel
+﻿@using FinanceTracker.Models.Enums
+@using FinanceTracker.ViewModel
 @model List<UserViewModel>
 
 <table>
@@ -13,8 +14,30 @@
         <form asp-controller="UserManagement" asp-action="Edit">
             <td><input type="text" name="UserName" value=@user.UserName></td>
             <td><input type="email" name="Email" value=@user.Email></td>
+            <td><input type="text" name="Password" value=@user.Password></td>
+            <td><input type="email" name="FirstName" value=@user.FirstName></td>
+            <td><input type="email" name="LastName" value=@user.LastName></td>
+            
+            <td>
+
+            <select name="Role" >
+                        @foreach (string roleName in Enum.GetNames(typeof(Role)))
+                        {
+                            if (roleName == user.Role.ToString())
+                            {
+                            <option selected value="@roleName">@roleName</option>
+                            }
+                            else
+                            {
+                            <option value="@roleName">@roleName</option>
+                            }
+                        }
+                
+            </select>
+            </td>
         <td><input type="submit" value="Submit"></td>
             <td><input type="hidden" name="CustomerId" value = @user.CustomerId /></td>
+
         </form>
     </tr>
     }

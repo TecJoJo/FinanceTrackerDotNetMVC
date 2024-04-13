@@ -15,7 +15,7 @@ function handleClick(e) {
     fetchEditForm(transactionId).then((data) => {
         editContainer.innerHTML = data
         // Show the modal after the fetch request completes and the modal's HTML has been added to the DOM
-        $('#editModal').modal('show');
+        $(`#editModal${transactionId}`).modal('show');
     })
 }
 

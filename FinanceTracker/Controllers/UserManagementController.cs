@@ -1,6 +1,7 @@
 ﻿using FinanceTracker.Models;
 using FinanceTracker.Models.Enums;
 using FinanceTracker.ViewModel;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -28,12 +29,33 @@ namespace FinanceTracker.Controllers
                     Role = Enum.GetName(typeof(Role), user.Role)!,
                     FirstName = user.FirstName??"N/A",
                     LastName = user.LastName?? "N/A",
+                    CustomerId = user.CustomerId,   
 
-
-                }).ToList();
+                }).ToList()??new List<UserViewModel>();
 
             return View(userList);
             }
+        }
+
+        [HttpPost]
+        public IActionResult Edit(UserViewModel userUpdateForm)
+        {
+            var userToEdit = _dbContext.Customers.Find(userUpdateForm.CustomerId);
+            if (userToEdit == null)
+            {
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                userToEdit.UserName = userUpdateForm.UserName;
+                userToEdit.Email = userUpdateForm.Email;
+
+                _dbContext.SaveChanges();   
+                return RedirectToAction("Index");
+            }
+
+
+
         }
     }
 }

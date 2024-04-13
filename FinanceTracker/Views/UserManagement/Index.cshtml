@@ -6,40 +6,18 @@
         <th>Name</th>
         <th>Email</th>
     </tr>
+    @foreach (var user in Model)
+    {
+        
     <tr>
-        <form action="/submit" method="post">
-        <td><input type="text" name="name"></td>
-        <td><input type="email" name="email"></td>
+        <form asp-controller="UserManagement" asp-action="Edit">
+            <td><input type="text" name="UserName" value=@user.UserName></td>
+            <td><input type="email" name="Email" value=@user.Email></td>
         <td><input type="submit" value="Submit"></td>
+            <td><input type="hidden" name="CustomerId" value = @user.CustomerId /></td>
         </form>
     </tr>
-    <tr>
-        <form action="/submit" method="post">
-        <td><input type="text" name="name"></td>
-        <td><input type="email" name="email"></td>
-        <td><input type="submit" value="Submit"></td>
-        </form>
-    </tr>
-    <tr>
-        <form action="/submit" method="post">
-        <td><input type="text" name="name"></td>
-        <td><input type="email" name="email"></td>
-        <td><input type="submit" value="Submit"></td>
-        </form>
-    </tr>
-    <tr>
-        <form action="/submit" method="post">
-        <td><input type="text" name="name"></td>
-        <td><input type="email" name="email"></td>
-        <td><input type="submit" value="Submit"></td>
-        </form>
-    </tr>
-    <tr>
-        <form action="/submit" method="post">
-        <td><input type="text" name="name"></td>
-        <td><input type="email" name="email"></td>
-        <td><input type="submit" value="Submit"></td>
-        </form>
-    </tr>
+    }
+    
     <!-- Repeat the form for each row as needed -->
 </table>

@@ -101,6 +101,7 @@ namespace FinanceTracker.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Edit(TransactionEditFormViewModel EditForm)
         {
 
@@ -159,6 +160,7 @@ namespace FinanceTracker.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Create(TransactionCreateFormViewModel createForm)
         {
             int? customerId =  _userService.fetchUser();

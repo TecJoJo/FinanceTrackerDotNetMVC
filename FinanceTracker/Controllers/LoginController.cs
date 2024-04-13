@@ -69,6 +69,7 @@ namespace FinanceTracker.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Register(RegisterViewModel registerForm)
         {
             if (!ModelState.IsValid)

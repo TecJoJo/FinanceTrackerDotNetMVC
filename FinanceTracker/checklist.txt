@@ -23,7 +23,7 @@ improve ment
 [x]transaction list to table 
 [x]introduce balance, monthly balance (monthly balance have no need of changing the model itself)
 
-[] daily expense and income bar chart https://www.chartjs.org/docs/latest/samples/bar/stacked-groups.html
+[] daily expense and income bar chart https://www.chartjs.org/docs/latest/samples/bar/vertical.html
 
 [] FInance overview combo bar/line chart where savings expenses incomes are displayed  https://www.chartjs.org/docs/latest/samples/other-charts/combo-bar-line.html
 

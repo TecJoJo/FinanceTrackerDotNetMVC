@@ -4,15 +4,11 @@
 
 @using System.Security.Claims
 @using FinanceTracker.Models.Enums
+@using FinanceTracker.Utils
 @using FinanceTracker.ViewModel
 
 @model FinanceTrackerIndexViewModel
 
-@{
-    var transactions = Model?.transactionListItems.OrderBy(t => t.TimeStamp);
-    var labels = transactions?.Select(transaction => transaction.TimeStamp.ToShortDateString());
-    var transactionAmount = transactions?.Select(transaction => transaction.Amount);
-}
 
 
 @if (User.Identity.IsAuthenticated)
@@ -24,7 +20,7 @@
     @if (User.FindFirst(ClaimTypes.Role).Value == adminString || User.FindFirst(ClaimTypes.Role).Value == userString)
     {
         <div>
-            <canvas id="lineChart"></canvas>
+            <canvas id="barChart"></canvas>
         </div>
         <div>
             <canvas id="pieChart"></canvas>
@@ -43,6 +39,41 @@ else
     <h1>hello, Please log in first</h1>
 }
 
+@{
+    // var transactions = Model?.transactionListItems.OrderBy(t => t.TimeStamp);
+    // var labels = transactions?.Select(transaction => transaction.TimeStamp.ToShortDateString());
+    // var transactionAmount = transactions?.Select(transaction => transaction.Amount);
+
+    var transactions = Model?.transactionListItems;
+    var dateLabels = dateCalculation.GetLast30Days().OrderBy(x => x).Select(x => x.ToString("MMMM dd"));
+    var days = dateCalculation.GetLast30Days();
+    List<decimal> dailyIncomes = new List<decimal>();
+
+    foreach (var day in days)
+    {
+        var dailyIncome = transactions?.OrderBy(x=>x.TimeStamp).Where(t => t.Type == CategoryType.Income.ToString()
+            && t.TimeStamp.Year == day.Year
+            && t.TimeStamp.Month == day.Month
+            && t.TimeStamp.Day == day.Day)
+            .Sum(t => t.Amount) ?? 0;
+        dailyIncomes.Add(dailyIncome);
+    }
+
+    List<decimal> dailyExpenses = new List<decimal>();
+
+    foreach (var day in days)
+    {
+        var dailyExpense = transactions?.OrderBy(x => x.TimeStamp).Where(t => t.Type == CategoryType.Expense.ToString()
+            && t.TimeStamp.Year == day.Year
+            && t.TimeStamp.Month == day.Month
+            && t.TimeStamp.Day == day.Day)
+            .Sum(t => t.Amount) ?? 0;
+        dailyExpenses.Add(dailyExpense);
+        Console.WriteLine(dailyExpense);
+    }
+
+    
+}
 
 
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
@@ -52,23 +83,31 @@ else
 
         
     
-    const ctx1 = document.getElementById('lineChart');
+    const ctx1 = document.getElementById('barChart');
 
+    
+
+    const labels = @Html.Raw(Json.Serialize(dateLabels))
     const data = {
-        labels: @Html.Raw(Json.Serialize(labels)),
+        labels: labels,
         datasets: [
             {
-                label: 'Transactions',
-                data: @Html.Raw(Json.Serialize(transactionAmount)),
+                label: 'Income',
+                data: @Html.Raw(Json.Serialize(dailyIncomes)),
                 borderColor: "blue",
-                backgroundColor: "yellow",
+                backgroundColor: "blue",
+            },
+            {
+                label: 'Outcome',
+                data: @Html.Raw(Json.Serialize(dailyExpenses)),
+                borderColor: "red",
+                backgroundColor: "red",
             }
-            
         ]
     };
 
     const config = {
-        type: 'line',
+        type: 'bar',
         data: data,
         options: {
             responsive: true,
@@ -78,7 +117,7 @@ else
                 },
                 title: {
                     display: true,
-                    text: 'Transaction Trend'
+                    text: 'Chart.js Bar Chart'
                 }
             }
         },

@@ -10,10 +10,10 @@ function handleClick(e) {
     const transactionId = e.target.dataset.id
     console.log("transactionId", transactionId)
 
-    const editContainer = e.target.closest('li').nextElementSibling;
-    console.log("editContainer", editContainer)
+    
+    
     fetchEditForm(transactionId).then((data) => {
-        editContainer.innerHTML = data
+        document.getElementById("editContainer").innerHTML = data
         // Show the modal after the fetch request completes and the modal's HTML has been added to the DOM
         $(`#editModal${transactionId}`).modal('show');
     })

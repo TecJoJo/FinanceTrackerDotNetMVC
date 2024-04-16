@@ -21,26 +21,50 @@ improve ment
 
 
 [x]transaction list to table 
-[x]intruduce balance, monthly balance (monthly balance have no need of chaning the model itself)
+[x]introduce balance, monthly balance (monthly balance have no need of changing the model itself)
+
+[] daily expense and income bar chart https://www.chartjs.org/docs/latest/samples/bar/stacked-groups.html
+
+[] FInance overview combo bar/line chart where savings expenses incomes are displayed  https://www.chartjs.org/docs/latest/samples/other-charts/combo-bar-line.html
+
+[]form validation ajax, error handling
 
 
 []expense chart to display savings, we set the saving goal which will in term be calculated to the daily expense cap and we show it and display as an indicator
 in the chart 
+
+[]pie chart
+
+
+[]add category 
+
 [] daily expense cap and saving goal,
 [] expense chart x axis should be from the last payday to next payday(monthly preview) if not it will be the beginning of the month and the ending of this month
 []x days untill the next payday
 
+"
 
+based on the expense and income of the month, in other to reach the saving goal you daily expense should be each day
+
+daily expense = income/days - savingGoal/days 
+
+Inorder to achieve the saving goal of this moth you need to 
+daily expense  = (monthincome - MothTotalExpense- savingGoal)/left days 
+
+You mothly budget is z
+based on the calculation, in order to reach your saving goal, you daily expense is x in the next y days before the month ends.(you are being though an bank currupt)
+
+
+"
 
 
 [] Potential saving can only be achieved by setting recurrent expense and recurrent income and we give a number 
 
-[] FInance overview combo bar/line chart where savings expenses incomes are displayed  https://www.chartjs.org/docs/latest/samples/other-charts/combo-bar-line.html
 
 
-[]pie chart
-[]form validation ajax, error handling
-[]add category 
+
+
+
 
 
 "From this data, you should create a data visualization chart or grid, using a JS -library and also calculate days until the next payday 

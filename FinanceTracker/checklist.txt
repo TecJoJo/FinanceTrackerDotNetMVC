@@ -20,8 +20,8 @@ improve ment
 
 
 
-[]transaction list to table 
-[]intruduce balance, mothly balance (monthly balance have no need of chaning the model itself)
+[x]transaction list to table 
+[x]intruduce balance, monthly balance (monthly balance have no need of chaning the model itself)
 
 
 []expense chart to display savings, we set the saving goal which will in term be calculated to the daily expense cap and we show it and display as an indicator

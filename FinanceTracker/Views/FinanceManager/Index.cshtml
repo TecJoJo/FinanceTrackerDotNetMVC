@@ -10,7 +10,11 @@
 @{
 
     var model = Model;
+    var groupedTransactions = Model.transactionListItems
+        .OrderBy(t => t.TimeStamp)
+        .GroupBy(t => new { t.TimeStamp.Year, t.TimeStamp.Month });
 }
+
 
 @if (User.Identity.IsAuthenticated)
 {
@@ -27,7 +31,7 @@
     //{
     //    <h1>@(Income.amount) at @(Income.TimeStamp)</h1>
     //} 
-    <p class="display-1">@(User.FindFirst("userName").Value)'s recent cash flow</p>
+    <p class="display-1">@(User.FindFirst("userName").Value.ToUpper())'s  cash flow</p>
 
 
     <div id="createModal"></div>
@@ -41,21 +45,36 @@
                 <th scope="col">Amount</th>
                 <th scope="col">Time</th>
                 <th scope="col">Category</th>
-                <th scope="col"></th>
-                <th scope="col"></th>
+                <th scope="col" >Actions</th>
+               
             </tr>
         </thead>
         <tbody>
-            @foreach (TransactionViewModel transaction in Model.transactionListItems)
+            @foreach (var group in groupedTransactions)
             {
-                <tr class="@(transaction.Type =="Income"?"":"table-secondary")">
-                    <th scope="row">@transaction.Type.ToUpper()</th>
-                    <td>@(transaction.Amount)€</td>
-                    <td>@(transaction.TimeStamp)</td>
-                    <td>@(transaction.Category)</td>
-                    <td><button id="editBtn" data-id=@(transaction.Id) data-type=@(transaction.Type) class="btn btn-outline-primary">Edit</button></td>
-                    <td><button id="deleteBtn" data-id=@(transaction.Id) class="btn btn-outline-danger">Delete</button></td>
+
+                var balance = (int)group.Sum(transaction => transaction.Amount);
+                <tr>
+                    <td colspan="4">
+                        <h2>@(new DateTime(group.Key.Year, group.Key.Month, 1).ToString("MMMM yyyy"))</h2>
+                        
+                    </td>
+                    <td colspan="1">
+                        <h4>Balance of the month: <span class="@(balance>0?"text-primary":"text-danger")">@balance</span></h4>
+                    </td>
                 </tr>
+
+                @foreach (TransactionViewModel transaction in group)
+                {
+                    <tr class="@(transaction.Type =="Income"?"":"table-secondary")">
+                        <th scope="row">@transaction.Type.ToUpper()</th>
+                        <td>@(transaction.Amount)€</td>
+                        <td>@(transaction.TimeStamp)</td>
+                        <td>@(transaction.Category)</td>
+                        <td><button id="editBtn" data-id=@(transaction.Id) data-type=@(transaction.Type) class="btn btn-outline-primary me-1">Edit</button><button id="deleteBtn" data-id=@(transaction.Id) class="btn btn-outline-danger">Delete</button></td>
+                       
+                    </tr>
+                }
             }
         </tbody>
     </table>
@@ -75,4 +94,4 @@ else
     <script src="~/js/AddTransactionModal.js"></script>
     <script src="~/js/DeleteForm.js"></script>
 
-};
+}

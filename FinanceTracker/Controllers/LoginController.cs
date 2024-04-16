@@ -13,7 +13,7 @@ namespace FinanceTracker.Controllers
 
         public LoginController(ApplicationDbContext dbContext)
         {
-            _dbContext = dbContext; 
+            _dbContext = dbContext;
         }
 
         public IActionResult Index()
@@ -41,14 +41,25 @@ namespace FinanceTracker.Controllers
                 {
 
 
-                    Auth.Login(customer, this.HttpContext);
+                    if (Auth.Login(loginViewModel.password, customer, this.HttpContext).Result)
+                    {
+
+                        return RedirectToAction("Index", "Home");
+                    }
+                    else
+                    {
+                        // Constructing an object with the error message
+                        var errorObject = new { error = "Invalid form" };
+
+                        // Returning the error object as JSON
+                        return View(loginViewModel);
+                    }
 
 
-                    return RedirectToAction("Index", "Home");   
 
                 }
-                
-                
+
+
             }
 
         }
@@ -63,8 +74,9 @@ namespace FinanceTracker.Controllers
             return RedirectToAction("Index");
         }
 
-        public IActionResult Register () {
-        
+        public IActionResult Register()
+        {
+
             return View();
         }
 
@@ -87,16 +99,16 @@ namespace FinanceTracker.Controllers
                         Role = Models.Enums.Role.user,
                         Balance = 0,
 
-                       
+
                     }
 
                     );
-                _dbContext.SaveChanges(); 
+                _dbContext.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            
-           
+
+
 
         }
 

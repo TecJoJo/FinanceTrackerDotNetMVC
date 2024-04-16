@@ -15,13 +15,16 @@ namespace FinanceTracker.Utils
 
             return customer;
 
-            
+
         }
 
-        public static async void  Login(Customer customer, HttpContext httpContext)
+        public static async Task<bool> Login(string passwordInput, Customer customer, HttpContext httpContext)
         {
-            string RoleName = Enum.GetName(typeof(Role), customer.Role)!;
-            var claims = new List<Claim>()
+            if (passwordInput == customer.Password)
+            {
+
+                string RoleName = Enum.GetName(typeof(Role), customer.Role)!;
+                var claims = new List<Claim>()
             {
 
                 new Claim(ClaimTypes.NameIdentifier, customer.CustomerId.ToString()),
@@ -30,19 +33,27 @@ namespace FinanceTracker.Utils
 
             };
 
-            var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
 
-            var authProperties = new AuthenticationProperties
+                var authProperties = new AuthenticationProperties
+                {
+                    AllowRefresh = true,
+                    ExpiresUtc = DateTimeOffset.UtcNow.AddMinutes(30),
+                    IsPersistent = true,
+                };
+                await httpContext.SignInAsync(
+                    CookieAuthenticationDefaults.AuthenticationScheme,
+                    new ClaimsPrincipal(claimsIdentity),
+                    authProperties
+                    );
+
+                return true;
+            }
+            else
             {
-                AllowRefresh = true,
-                ExpiresUtc = DateTimeOffset.UtcNow.AddMinutes(30),
-                IsPersistent = true,
-            };
-            await httpContext.SignInAsync(
-                CookieAuthenticationDefaults.AuthenticationScheme,
-                new ClaimsPrincipal(claimsIdentity),
-                authProperties
-                );
+                //if password is not corresponding to the database, we do nothing 
+                return false;
+            }
 
         }
     }

@@ -15,10 +15,34 @@
 improve ment 
 [ x ]Create and edit partial view 
 [ x ]Admin edit role
-[]pie chart
-[]intruduce balance 
- []form validation ajax
+
+
+
+
+
 []transaction list to table 
-[  ]password encryption 
+[]intruduce balance, mothly balance (monthly balance have no need of chaning the model itself)
+
+
+[]expense chart to display savings, we set the saving goal which will in term be calculated to the daily expense cap and we show it and display as an indicator
+in the chart 
+[] daily expense cap and saving goal,
+[] expense chart x axis should be from the last payday to next payday(monthly preview) if not it will be the beginning of the month and the ending of this month
+[]x days untill the next payday
+
+
+
+
+[] Potential saving can only be achieved by setting recurrent expense and recurrent income and we give a number 
+
+[] FInance overview combo bar/line chart where savings expenses incomes are displayed  https://www.chartjs.org/docs/latest/samples/other-charts/combo-bar-line.html
+
+
+[]pie chart
+[]form validation ajax, error handling
 []add category 
-[  ]separate line for income and expense
+
+
+"From this data, you should create a data visualization chart or grid, using a JS -library and also calculate days until the next payday 
+(or end of given period), daily expense rate, potential savings per month,
+which can also be done by setting personal saving goal and giving rough estimate budget of daily expense maximum for the goals to be met."

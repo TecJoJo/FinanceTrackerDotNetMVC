@@ -24,3 +24,13 @@ read the selection help tags https://learn.microsoft.com/en-us/aspnet/core/mvc/v
 Seems like first create the U of the CRUD is not wise as the technical vision is not yet that clear. I believe the world will open up quite 
 a bit after first discover how the Create funcitonize. 
 
+
+
+instruduce future income, when adding the income, and expense will add one property, recurrent day, week, month, year 
+when rendering the list, the future transactions is not going to show
+
+about the chart:  
+
+separate chart for saving.  https://www.chartjs.org/docs/latest/samples/bar/vertical.html
+
+separate cahrt for category 

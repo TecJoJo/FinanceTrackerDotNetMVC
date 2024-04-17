@@ -97,7 +97,7 @@ namespace FinanceTracker.Controllers
                         Email = registerForm.Email,
                         Password = registerForm.Password,
                         Role = Models.Enums.Role.user,
-                        Balance = 0,
+                        SavingGoal = 0,
 
 
                     }

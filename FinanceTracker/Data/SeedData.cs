@@ -20,7 +20,7 @@ namespace FinanceTracker.Data
                             Email = "admin@hamk.com",
                             Password = "password",
                             Role = Role.admin,
-                            Balance = 1000
+                            
 
 
                         },
@@ -30,7 +30,6 @@ namespace FinanceTracker.Data
                             Email = "luyao@hamk.com",
                             Password = "password",
                             Role = Role.admin,
-                            Balance = 5000
 
 
                         },
@@ -40,7 +39,6 @@ namespace FinanceTracker.Data
                             Email = "user@hamk.com",
                             Password = "password",
                             Role = Role.user,
-                            Balance = 100
 
 
                         },
@@ -50,7 +48,6 @@ namespace FinanceTracker.Data
                             Email = "visitor@hamk.com",
                             Password = "password",
                             Role = Role.vistor,
-                            Balance = 0
 
 
                         }

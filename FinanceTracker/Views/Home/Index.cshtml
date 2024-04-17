@@ -17,7 +17,7 @@
     // var transactionAmount = transactions?.Select(transaction => transaction.Amount);
 
     var transactions = Model?.transactionListItems;
-    var last30DaysSavings = transactions.Where(t => t.TimeStamp > DateTime.Now.AddDays(-30)).Sum(t => t.Amount);
+    var last30DaysSavings = transactions?.Where(t => t.TimeStamp > DateTime.Now.AddDays(-30)).Sum(t => t.Amount);
     var dateLabels = dateCalculation.GetLast30Days().OrderBy(x => x).Select(x => x.ToString("MMMM dd"));
     var days = dateCalculation.GetLast30Days().OrderBy(x => x);
     List<decimal> dailyIncomes = new List<decimal>();

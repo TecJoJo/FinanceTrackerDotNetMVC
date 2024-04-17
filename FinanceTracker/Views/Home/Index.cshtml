@@ -1,108 +1,20 @@
-﻿@{
+﻿@using FinanceTracker.Models.Enums
+@using FinanceTracker.ViewModel
+@using System.Security.Claims
+@{
     ViewData["Title"] = "Home Page";
 }
 
-@using System.Security.Claims
-@using FinanceTracker.Models.Enums
-@using FinanceTracker.Utils
-@using FinanceTracker.ViewModel
-
-@model FinanceTrackerIndexViewModel
-
-@{
-    //code for bar chart, daily expense income analyses
-
-    // var transactions = Model?.transactionListItems.OrderBy(t => t.TimeStamp);
-    // var labels = transactions?.Select(transaction => transaction.TimeStamp.ToShortDateString());
-    // var transactionAmount = transactions?.Select(transaction => transaction.Amount);
-
-    var transactions = Model?.transactionListItems;
-    var last30DaysSavings = transactions?.Where(t => t.TimeStamp > DateTime.Now.AddDays(-30)).Sum(t => t.Amount);
-    var dateLabels = dateCalculation.GetLast30Days().OrderBy(x => x).Select(x => x.ToString("MMMM dd"));
-    var days = dateCalculation.GetLast30Days().OrderBy(x => x);
-    List<decimal> dailyIncomes = new List<decimal>();
-
-    foreach (var day in days)
-    {
-        var dailyIncome = transactions?.Where(t => t.Type == CategoryType.Income.ToString()
-            && t.TimeStamp.Year == day.Year
-            && t.TimeStamp.Month == day.Month
-            && t.TimeStamp.Day == day.Day)
-            .Sum(t => t.Amount) ?? 0;
-        dailyIncomes.Add(dailyIncome);
-    }
-
-    List<decimal> dailyExpenses = new List<decimal>();
-
-    foreach (var day in days)
-    {
-        var dailyExpense = transactions?.Where(t => t.Type == CategoryType.Expense.ToString()
-            && t.TimeStamp.Year == day.Year
-            && t.TimeStamp.Month == day.Month
-            && t.TimeStamp.Day == day.Day)
-            .Sum(t => t.Amount) ?? 0;
-        dailyExpenses.Add(dailyExpense);
-        Console.WriteLine(dailyExpense);
-    }
 
 
-}
+@model HomeIndexViewModel
 
-@{
-    //code for combo chart, monthly saving/expense/income analyses
 
-    var mothLabels = dateCalculation.GetLast12Months().OrderBy(x => x).Select(x => x.ToString("yyyy MMMM"));
-    var months = dateCalculation.GetLast12Months().OrderBy(x => x);
-
-    // var monthSavings =  transactions?.GroupBy(t => new { month = t.TimeStamp.Month }).OrderBy(g => g.Key.month).Select(g => g.Sum(t => t.Amount)).ToList();
-
-    // var monthExpenses = transactions?.GroupBy(t => new { month = t.TimeStamp.Month }).OrderBy(g => g.Key.month).Select(g => g.Where(t => t.Type == CategoryType.Expense.ToString()).Sum(t => t.Amount)).ToList();
-
-    // var monthIncomes = transactions?.GroupBy(t => new { month = t.TimeStamp.Month }).OrderBy(g => g.Key.month).Select(g => g.Where(t => t.Type == CategoryType.Income.ToString()).Sum(t => t.Amount)).ToList();
-    List<decimal> monthSavings = new List<decimal>();
-
-    foreach (var month in months)
-    {
-        var MonthSaving = transactions?.Where(t =>
-            t.TimeStamp.Year == month.Year
-            && t.TimeStamp.Month == month.Month)
-            .Sum(t => t.Amount) ?? 0;
-
-        monthSavings.Add(MonthSaving);
-    }
-
-    List<decimal> monthExpenses = new List<decimal>();
-
-    foreach (var month in months)
-    {
-        var MonthExpense = transactions?.Where(t =>
-            t.TimeStamp.Year == month.Year
-            && t.TimeStamp.Month == month.Month
-            && t.Type == CategoryType.Expense.ToString())
-            .Sum(t => t.Amount) ?? 0;
-
-        monthExpenses.Add(MonthExpense);
-    }
-
-    List<decimal> monthIncomes = new List<decimal>();
-
-    foreach (var month in months)
-    {
-        var MonthIncome = transactions?.Where(t =>
-            t.TimeStamp.Year == month.Year
-            && t.TimeStamp.Month == month.Month
-            && t.Type == CategoryType.Income.ToString())
-            .Sum(t => t.Amount) ?? 0;
-
-        monthIncomes.Add(MonthIncome);
-    }
-
-}
 
 
 @if (User.Identity.IsAuthenticated)
 {
-    <h1>Welcome @User.FindFirst("userName").Value
+    <h1>Welcome @Model.UserName
     </h1>
     var adminString = Enum.GetName(typeof(Role), Role.admin)!;
     var userString = Enum.GetName(typeof(Role), Role.user)!;
@@ -133,7 +45,7 @@
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">Tips</li>
                     <li class="list-group-item">In the last 30 days</li>
-                    <li class="list-group-item">Your savings are<span class="@(last30DaysSavings>0?"text-primary":"text-danger") fw-bold">@last30DaysSavings</span>€</li>
+                    <li class="list-group-item">Your savings are<span class="@(Model.Last30DaysSavings>0?"text-primary":"text-danger") fw-bold">@Model.Last30DaysSavings</span>€</li>
                     <li class="list-group-item">A fourth item</li>
                     <li class="list-group-item">And a fifth one</li>
                 </ul>
@@ -143,7 +55,7 @@
     }
     else
     {
-      <h1>You are visiting with an visitor account which have no access to the Finance Compass, please upgrade your plan</h1>
+      <h1>You are visiting with an visitor account which have no access to the Finance overview, please upgrade your plan</h1>
     }
 
 
@@ -164,25 +76,25 @@ else
 <script >
 
 
-        
+      
     
     const ctx1 = document.getElementById('barChart');
 
     
 
-    const labels = @Html.Raw(Json.Serialize(dateLabels))
+    const labels = @Html.Raw(Json.Serialize(Model.ChartsData.DateLabels))
     const data = {
         labels: labels,
         datasets: [
             {
                 label: 'Income',
-                data: @Html.Raw(Json.Serialize(dailyIncomes)),
+                data: @Html.Raw(Json.Serialize(Model.ChartsData.DailyIncomes)),
                 borderColor: "blue",
                 backgroundColor: "blue",
             },
             {
                 label: 'Expense',
-                data: @Html.Raw(Json.Serialize(dailyExpenses)),
+                data: @Html.Raw(Json.Serialize(Model.ChartsData.DailyExpenses)),
                 borderColor: "red",
                 backgroundColor: "red",
             }
@@ -210,20 +122,20 @@ else
 
     const ctx2 = document.getElementById('comboChart');
  
-    const comboLabels = @Html.Raw(Json.Serialize(mothLabels));
+    const comboLabels = @Html.Raw(Json.Serialize(Model.ChartsData.MonthLabels));
     const comboData = {
         labels: comboLabels,
         datasets: [
             {
                 label: 'Incomes',
-                data: @Html.Raw(Json.Serialize(monthIncomes)),
+                data: @Html.Raw(Json.Serialize(Model.ChartsData.MonthIncomes)),
                 borderColor: "blue",
                 backgroundColor: "blue",
                 order: 1
             },
             {
                 label: 'Expenses',
-                data: @Html.Raw(Json.Serialize(monthExpenses)),
+                data: @Html.Raw(Json.Serialize(Model.ChartsData.MonthExpenses)),
                 borderColor: "red",
                 backgroundColor: "red",
                 
@@ -231,7 +143,7 @@ else
             },
             {
                 label: 'Savings',
-                data: @Html.Raw(Json.Serialize(monthSavings)),
+                data: @Html.Raw(Json.Serialize(Model.ChartsData.MonthSavings)),
                 borderColor: "green",
                 backgroundColor: "green",
                 type: 'line',

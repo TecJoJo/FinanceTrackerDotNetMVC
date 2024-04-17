@@ -141,7 +141,30 @@ namespace FinanceTracker.Controllers
 
 
                 //query for the saving goal 
-                var savingGoal = _dbContext.Customers.Find(customerId)?.SavingGoal;
+                var savingGoal = _dbContext.Customers.Find(customerId)?.SavingGoal ?? 0;
+
+
+
+                //Calculate the maximum daily expense to meet the saving goal
+                var currentMonthTransactions = _dbContext.Transactions.Where(t => t.TimeStamp.Month == DateTime.Now.Month);
+                var currentMonthIncome = currentMonthTransactions?
+                    .Where(t => t.Category.type == CategoryType.Income)
+                    .ToList()
+                    .Sum(t => t.amount) ?? 0; ;
+                var currentMonthExpense = currentMonthTransactions?
+                    .Where(t => t.Category.type == CategoryType.Expense)
+                    .ToList()
+                    .Sum(t => t.amount) ?? 0;
+                var currentMonthLeftDays = DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month) - DateTime.Now.Day;
+
+               
+
+                var maxDailyExpense = 0; // default value
+
+                if (currentMonthLeftDays > 0)
+                {
+                    maxDailyExpense = (int)(Math.Round((currentMonthIncome + currentMonthExpense - savingGoal) / currentMonthLeftDays));
+                }
 
 
                 var homeIndexViewModel = new HomeIndexViewModel()
@@ -162,9 +185,12 @@ namespace FinanceTracker.Controllers
                     UserName = userName??"Anonymous User",
                     CustomerId = customerId,
                     SavingGoal = savingGoal,    
-                    
+                    maxDailyExpense = maxDailyExpense,
 
                 };
+
+
+
 
                 return View(homeIndexViewModel);
 

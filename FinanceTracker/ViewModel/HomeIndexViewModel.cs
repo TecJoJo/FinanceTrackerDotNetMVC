@@ -12,6 +12,10 @@
 
         public int CustomerId { get; set; } 
 
+        public int maxDailyExpense { get; set; }    
+
         public decimal? SavingGoal { get; set; }
+
+
     }
 }

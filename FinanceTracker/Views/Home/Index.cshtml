@@ -10,7 +10,9 @@
 @model HomeIndexViewModel
 
 
-
+@{
+    var currentMonthLeftDays = DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month) - DateTime.Now.Day;
+}
 
 @if (User.Identity.IsAuthenticated)
 {
@@ -43,11 +45,21 @@
             <div class="col-4" >
 
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item">Tips</li>
+                    <li class="list-group-item display-5">OVERVIEW</li>
                     <li class="list-group-item">In the last 30 days</li>
-                    <li class="list-group-item">Your savings are<span class="@(Model.Last30DaysSavings>0?"text-primary":"text-danger") fw-bold">@Model.Last30DaysSavings</span>€</li>
-                    <li class="list-group-item">A fourth item</li>
-                    <li class="list-group-item">And a fifth one</li>
+                    <li class="list-group-item">Your savings are<span class="@(Model.Last30DaysSavings>0?"text-primary":"text-danger") fw-bold">@(Model.Last30DaysSavings)€</span></li>
+                    @if (Model.SavingGoal != 0)
+                    {
+                        <li class="list-group-item">Based on your saving goal<span class="text-primary fw-bold">(@(Model.SavingGoal)€)</span></li>
+                        <li class="list-group-item">In the rest <span class="text-primary fw-bold">@currentMonthLeftDays</span> days</li>
+                        <li class="list-group-item">Your maximum daily expense is <span class="text-danger fw-bold">@(Model.maxDailyExpense)€</span></li>
+                    }
+                    else{
+
+                        <li class="list-group-item">Have not set a saving goal? <button class="btn btn-primary mx-3">Set a saving goal</button></li>
+                        
+                        }
+                    
                 </ul>
             </div>
         </div>

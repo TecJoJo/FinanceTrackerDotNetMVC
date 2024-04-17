@@ -9,44 +9,15 @@
 
 @model FinanceTrackerIndexViewModel
 
-
-
-@if (User.Identity.IsAuthenticated)
-{
-    <h1>Welcome @User.FindFirst("userName").Value
-    </h1>
-    var adminString = Enum.GetName(typeof(Role), Role.admin)!;
-    var userString = Enum.GetName(typeof(Role), Role.user)!;
-    @if (User.FindFirst(ClaimTypes.Role).Value == adminString || User.FindFirst(ClaimTypes.Role).Value == userString)
-    {
-        <div>
-            <canvas id="barChart"></canvas>
-        </div>
-        <div>
-            <canvas id="comboChart"></canvas>
-        </div>
-    }
-    else
-    {
-      <h1>You are visiting with an visitor account which have no access to the Finance Compass, please upgrade your plan</h1>
-    }
-
-
-
-}
-else
-{
-    <h1>hello, Please log in first</h1>
-}
-
 @{
-    //code for bar chart, daily expense income analyses 
+    //code for bar chart, daily expense income analyses
 
     // var transactions = Model?.transactionListItems.OrderBy(t => t.TimeStamp);
     // var labels = transactions?.Select(transaction => transaction.TimeStamp.ToShortDateString());
     // var transactionAmount = transactions?.Select(transaction => transaction.Amount);
 
     var transactions = Model?.transactionListItems;
+    var last30DaysSavings = transactions.Where(t => t.TimeStamp > DateTime.Now.AddDays(-30)).Sum(t => t.Amount);
     var dateLabels = dateCalculation.GetLast30Days().OrderBy(x => x).Select(x => x.ToString("MMMM dd"));
     var days = dateCalculation.GetLast30Days().OrderBy(x => x);
     List<decimal> dailyIncomes = new List<decimal>();
@@ -74,12 +45,12 @@ else
         Console.WriteLine(dailyExpense);
     }
 
-    
+
 }
 
 @{
     //code for combo chart, monthly saving/expense/income analyses
-    
+
     var mothLabels = dateCalculation.GetLast12Months().OrderBy(x => x).Select(x => x.ToString("yyyy MMMM"));
     var months = dateCalculation.GetLast12Months().OrderBy(x => x);
 
@@ -96,7 +67,7 @@ else
             t.TimeStamp.Year == month.Year
             && t.TimeStamp.Month == month.Month)
             .Sum(t => t.Amount) ?? 0;
-            
+
         monthSavings.Add(MonthSaving);
     }
 
@@ -127,6 +98,63 @@ else
     }
 
 }
+
+
+@if (User.Identity.IsAuthenticated)
+{
+    <h1>Welcome @User.FindFirst("userName").Value
+    </h1>
+    var adminString = Enum.GetName(typeof(Role), Role.admin)!;
+    var userString = Enum.GetName(typeof(Role), Role.user)!;
+    @if (User.FindFirst(ClaimTypes.Role).Value == adminString || User.FindFirst(ClaimTypes.Role).Value == userString)
+    {
+        <div class="row">
+            <div class="col-8">
+                <div class="row justify-content-center text-center">
+                    <h1>Your cash flow in the past 30 days: </h1>
+                    <div class="col">
+
+                        <canvas id="barChart"></canvas>
+                    </div>
+
+                </div>
+
+                <div class="row justify-content-center text-center">
+                    <h1>Your cash flow in the past 12 months: </h1>
+                    <div class="col">
+                        <canvas id="comboChart"></canvas>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-4" >
+
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Tips</li>
+                    <li class="list-group-item">In the last 30 days</li>
+                    <li class="list-group-item">Your savings are<span class="@(last30DaysSavings>0?"text-primary":"text-danger") fw-bold">@last30DaysSavings</span>€</li>
+                    <li class="list-group-item">A fourth item</li>
+                    <li class="list-group-item">And a fifth one</li>
+                </ul>
+            </div>
+        </div>
+
+    }
+    else
+    {
+      <h1>You are visiting with an visitor account which have no access to the Finance Compass, please upgrade your plan</h1>
+    }
+
+
+
+}
+else
+{
+    <h1>hello, Please log in first</h1>
+}
+
+
 
 
 

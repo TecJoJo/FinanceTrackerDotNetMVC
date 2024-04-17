@@ -11,5 +11,15 @@
             }
             return dates;
         }
+
+        public static List<DateTime> GetLast12Months()
+        {
+            List<DateTime> dates = new List<DateTime>();
+            for (int i = 0; i < 12; i++)
+            {
+                dates.Add(DateTime.Now.AddMonths(-i));
+            }
+            return dates;
+        }
     }
 }

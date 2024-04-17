@@ -23,7 +23,7 @@
             <canvas id="barChart"></canvas>
         </div>
         <div>
-            <canvas id="pieChart"></canvas>
+            <canvas id="comboChart"></canvas>
         </div>
     }
     else
@@ -40,6 +40,8 @@ else
 }
 
 @{
+    //code for bar chart, daily expense income analyses 
+
     // var transactions = Model?.transactionListItems.OrderBy(t => t.TimeStamp);
     // var labels = transactions?.Select(transaction => transaction.TimeStamp.ToShortDateString());
     // var transactionAmount = transactions?.Select(transaction => transaction.Amount);
@@ -74,6 +76,59 @@ else
 
     
 }
+
+@{
+    //code for combo chart, monthly saving/expense/income analyses
+    
+    var mothLabels = dateCalculation.GetLast12Months().OrderBy(x => x).Select(x => x.ToString("yyyy MMMM"));
+    var months = dateCalculation.GetLast12Months().OrderBy(x => x);
+
+    // var monthSavings =  transactions?.GroupBy(t => new { month = t.TimeStamp.Month }).OrderBy(g => g.Key.month).Select(g => g.Sum(t => t.Amount)).ToList();
+
+    // var monthExpenses = transactions?.GroupBy(t => new { month = t.TimeStamp.Month }).OrderBy(g => g.Key.month).Select(g => g.Where(t => t.Type == CategoryType.Expense.ToString()).Sum(t => t.Amount)).ToList();
+
+    // var monthIncomes = transactions?.GroupBy(t => new { month = t.TimeStamp.Month }).OrderBy(g => g.Key.month).Select(g => g.Where(t => t.Type == CategoryType.Income.ToString()).Sum(t => t.Amount)).ToList();
+    List<decimal> monthSavings = new List<decimal>();
+
+    foreach (var month in months)
+    {
+        var MonthSaving = transactions?.Where(t =>
+            t.TimeStamp.Year == month.Year
+            && t.TimeStamp.Month == month.Month)
+            .Sum(t => t.Amount) ?? 0;
+            
+        monthSavings.Add(MonthSaving);
+    }
+
+    List<decimal> monthExpenses = new List<decimal>();
+
+    foreach (var month in months)
+    {
+        var MonthExpense = transactions?.Where(t =>
+            t.TimeStamp.Year == month.Year
+            && t.TimeStamp.Month == month.Month
+            && t.Type == CategoryType.Expense.ToString())
+            .Sum(t => t.Amount) ?? 0;
+
+        monthExpenses.Add(MonthExpense);
+    }
+
+    List<decimal> monthIncomes = new List<decimal>();
+
+    foreach (var month in months)
+    {
+        var MonthIncome = transactions?.Where(t =>
+            t.TimeStamp.Year == month.Year
+            && t.TimeStamp.Month == month.Month
+            && t.Type == CategoryType.Income.ToString())
+            .Sum(t => t.Amount) ?? 0;
+
+        monthIncomes.Add(MonthIncome);
+    }
+
+}
+
+
 
 
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
@@ -117,7 +172,7 @@ else
                 },
                 title: {
                     display: true,
-                    text: 'Chart.js Bar Chart'
+                    text: 'Financial overview on the past 30 days'
                 }
             }
         },
@@ -125,20 +180,55 @@ else
    
     new Chart(ctx1,config)
 
-    // const ctx2 = document.getElementById('pieChart');
+    const ctx2 = document.getElementById('comboChart');
  
-    // const DATA_COUNT = 5;
-    // const NUMBER_CFG = { count: DATA_COUNT, min: 0, max: 100 };
+    const comboLabels = @Html.Raw(Json.Serialize(mothLabels));
+    const comboData = {
+        labels: comboLabels,
+        datasets: [
+            {
+                label: 'Incomes',
+                data: @Html.Raw(Json.Serialize(monthIncomes)),
+                borderColor: "blue",
+                backgroundColor: "blue",
+                order: 1
+            },
+            {
+                label: 'Expenses',
+                data: @Html.Raw(Json.Serialize(monthExpenses)),
+                borderColor: "red",
+                backgroundColor: "red",
+                
+                order: 1
+            },
+            {
+                label: 'Savings',
+                data: @Html.Raw(Json.Serialize(monthSavings)),
+                borderColor: "green",
+                backgroundColor: "green",
+                type: 'line',
+                order: 0
+            },
+        ]
+    };
 
-    // const data = {
-    //     labels: ['Red', 'Orange', 'Yellow', 'Green', 'Blue'],
-    //     datasets: [
-    //         {
-    //             label: 'Dataset 1',
-    //             data: Utils.numbers(NUMBER_CFG),
-    //             backgroundColor: Object.values(Utils.CHART_COLORS),
-    //         }
-    //     ]
-    // };
+    const config2 = {
+        type: 'bar',
+        data: comboData,
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'top',
+                },
+                title: {
+                    display: true,
+                    text: 'Financial overview on the last 12 months'
+                }
+            }
+        },
+    };
+
+    new Chart(ctx2,config2)
     
 </script>

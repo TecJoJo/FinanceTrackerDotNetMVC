@@ -2,6 +2,7 @@ using FinanceTracker.Models;
 using FinanceTracker.Models.Enums;
 using FinanceTracker.Utils;
 using FinanceTracker.ViewModel;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
@@ -9,6 +10,7 @@ using System.Security.Claims;
 
 namespace FinanceTracker.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -206,6 +208,23 @@ namespace FinanceTracker.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        [HttpPost]
+        public IActionResult SetSavingGoal(SavingGoalViewModel savingGoalForm)
+        {
+            if(!ModelState.IsValid) {
+                Console.WriteLine("ahaa!!");
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                int.TryParse(savingGoalForm.CustomerId, out int customerId);
+                var customer = _dbContext.Customers.Find(customerId);
+                if(customer != null) customer.SavingGoal = savingGoalForm.Amount;
+                _dbContext.SaveChanges();  
+                return RedirectToAction("Index");
+            }
         }
     }
 }

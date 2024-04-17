@@ -46,12 +46,12 @@ else
 
     var transactions = Model?.transactionListItems;
     var dateLabels = dateCalculation.GetLast30Days().OrderBy(x => x).Select(x => x.ToString("MMMM dd"));
-    var days = dateCalculation.GetLast30Days();
+    var days = dateCalculation.GetLast30Days().OrderBy(x => x);
     List<decimal> dailyIncomes = new List<decimal>();
 
     foreach (var day in days)
     {
-        var dailyIncome = transactions?.OrderBy(x=>x.TimeStamp).Where(t => t.Type == CategoryType.Income.ToString()
+        var dailyIncome = transactions?.Where(t => t.Type == CategoryType.Income.ToString()
             && t.TimeStamp.Year == day.Year
             && t.TimeStamp.Month == day.Month
             && t.TimeStamp.Day == day.Day)
@@ -63,7 +63,7 @@ else
 
     foreach (var day in days)
     {
-        var dailyExpense = transactions?.OrderBy(x => x.TimeStamp).Where(t => t.Type == CategoryType.Expense.ToString()
+        var dailyExpense = transactions?.Where(t => t.Type == CategoryType.Expense.ToString()
             && t.TimeStamp.Year == day.Year
             && t.TimeStamp.Month == day.Month
             && t.TimeStamp.Day == day.Day)
@@ -98,7 +98,7 @@ else
                 backgroundColor: "blue",
             },
             {
-                label: 'Outcome',
+                label: 'Expense',
                 data: @Html.Raw(Json.Serialize(dailyExpenses)),
                 borderColor: "red",
                 backgroundColor: "red",

@@ -16,16 +16,17 @@
 
 @if (User.Identity.IsAuthenticated)
 {
-    <h1>Welcome @Model.UserName
-    </h1>
     var adminString = Enum.GetName(typeof(Role), Role.admin)!;
     var userString = Enum.GetName(typeof(Role), Role.user)!;
     @if (User.FindFirst(ClaimTypes.Role).Value == adminString || User.FindFirst(ClaimTypes.Role).Value == userString)
     {
         <div class="row">
+            <h1 class="display-2 my-5">
+                Welcome @Model.UserName
+            </h1>
             <div class="col-8">
                 <div class="row justify-content-center text-center">
-                    <h1>Your cash flow in the past 30 days: </h1>
+                    <h1 class="display-5 my-1">Your cash flow in the past 30 days: </h1>
                     <div class="col">
 
                         <canvas id="barChart"></canvas>
@@ -34,7 +35,7 @@
                 </div>
 
                 <div class="row justify-content-center text-center">
-                    <h1>Your cash flow in the past 12 months: </h1>
+                    <h1 class="display-5 my-1">Your cash flow in the past 12 months: </h1>
                     <div class="col">
                         <canvas id="comboChart"></canvas>
                     </div>
@@ -42,7 +43,7 @@
 
             </div>
 
-            <div class="col-4" >
+            <div class="col-4">
 
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item display-5">OVERVIEW</li>
@@ -51,16 +52,18 @@
                     @if (Model.SavingGoal != 0)
                     {
                         <li class="list-group-item">Based on your saving goal<span class="text-primary fw-bold">(@(Model.SavingGoal)€)</span></li>
-                        <li class="list-group-item">In the rest <span class="text-primary fw-bold">@currentMonthLeftDays</span> days</li>
+                        <li class="list-group-item">In the rest <span class="text-primary fw-bold">@currentMonthLeftDays</span> days in this month</li>
                         <li class="list-group-item">Your maximum daily expense is <span class="text-danger fw-bold">@(Model.maxDailyExpense)€</span></li>
-                        <button data-toggle="modal" data-target="#exampleModal" type="button" class="btn btn-primary">New saving goal</button>
+                        <button data-toggle="modal" data-target="#exampleModal" type="button" class="btn btn-outline-primary ">New saving goal</button>
                     }
-                    else{
+                    else
+                    {
 
-                        <li class="list-group-item">Have not set a saving goal? <button data-toggle="modal" data-target="#exampleModal" type="button" class="btn btn-primary mx-3">Set a saving goal</button></li>
-                        
-                        }
+                        <li class="list-group-item">Have not set a saving goal? <button data-toggle="modal" data-target="#exampleModal" type="button" class="btn btn-outline-primary mx-3">Set a saving goal</button></li>
 
+                    }
+                    <li class="list-group-item">Want to register a new cash flow?</li>
+                    <a href="/FinanceManager/Index" class="btn btn-primary">Open Finance Management</a>
 
 
 
@@ -71,7 +74,7 @@
                                 <form asp-controller="Home" asp-action="SetSavingGoal">
 
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                        <h5 class="modal-title" id="exampleModalLabel">Set a saving goal</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
@@ -82,8 +85,8 @@
                                                 <span class="input-group-text">$</span>
 
                                             </div>
-                                           <input type="hidden" name="customerId" value="@(Model.CustomerId)" />
-                                           <input type="number" name="amount">
+                                            <input type="hidden" name="customerId" value="@(Model.CustomerId)" />
+                                            <input type="number" name="amount">
                                         </div>
                                     </div>
                                     <div class="modal-footer">
@@ -94,17 +97,17 @@
                             </div>
                         </div>
                     </div>
-                    
+
                 </ul>
 
-                
+
             </div>
         </div>
 
     }
     else
     {
-      <h1>You are visiting with an visitor account which have no access to the Finance overview, please upgrade your plan</h1>
+        <h1>You are visiting with an visitor account which have no access to the Finance overview, please upgrade your plan</h1>
     }
 
 
@@ -120,19 +123,19 @@ else
 
 
 
- 
+
 <script src="~/js/chart441.js"></script>
-<script >
+<script>
 
 
-      
-    
+
+
     const ctx1 = document.getElementById('barChart');
 
-    
+
 
     const labels = @Html.Raw(Json.Serialize(Model.ChartsData.DateLabels))
-    const data = {
+        const data = {
         labels: labels,
         datasets: [
             {
@@ -166,11 +169,11 @@ else
             }
         },
     };
-   
-    new Chart(ctx1,config)
+
+    new Chart(ctx1, config)
 
     const ctx2 = document.getElementById('comboChart');
- 
+
     const comboLabels = @Html.Raw(Json.Serialize(Model.ChartsData.MonthLabels));
     const comboData = {
         labels: comboLabels,
@@ -187,7 +190,7 @@ else
                 data: @Html.Raw(Json.Serialize(Model.ChartsData.MonthExpenses)),
                 borderColor: "red",
                 backgroundColor: "red",
-                
+
                 order: 1
             },
             {
@@ -218,8 +221,8 @@ else
         },
     };
 
-    new Chart(ctx2,config2)
-    
+    new Chart(ctx2, config2)
+
 </script>
 
 <script>
@@ -240,7 +243,7 @@ else
         const response = await fetch("/Home/SetSavingGoal/@Html.Raw(Json.Serialize(Model.CustomerId))", {
             method: "POST",
             headers: { 'Content-Type': 'application/json', },
-            
+
 
 
         })

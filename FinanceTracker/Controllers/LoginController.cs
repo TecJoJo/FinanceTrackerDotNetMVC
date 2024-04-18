@@ -104,7 +104,23 @@ namespace FinanceTracker.Controllers
 
                     );
                 _dbContext.SaveChanges();
-                return RedirectToAction("Index");
+
+                var loginInfo = new LoginViewModel()
+                {
+                    userName = registerForm.UserName,
+                    password = registerForm.Password,
+                };
+                var customer = Auth.IdentityValidation(loginInfo, _dbContext);   
+                if (customer == null)
+                {
+
+                    return View(registerForm);
+                }
+                else
+                {
+                    Auth.Login(registerForm.Password, customer, this.HttpContext);
+                    return RedirectToAction("Index", "Home");
+                }
             }
 
 

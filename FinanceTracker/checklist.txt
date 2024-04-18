@@ -29,7 +29,15 @@ improve ment
 
 [x] daily expense cap and saving goal,
 
-[]form validation ajax, error handling
+[x]form validation ajax, error handling
+
+[x]navigation modification 
+
+[x]Login position, hide login if logged in 
+
+[]more data 
+
+[]manual 
 
 
 

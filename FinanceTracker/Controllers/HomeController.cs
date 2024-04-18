@@ -148,11 +148,11 @@ namespace FinanceTracker.Controllers
 
 
                 //Calculate the maximum daily expense to meet the saving goal
-                var currentMonthTransactions = _dbContext.Transactions.Where(t => t.TimeStamp.Month == DateTime.Now.Month);
+                var currentMonthTransactions = _dbContext.Transactions.Where(t=>t.CustomerId==customerId).Where(t => t.TimeStamp.Month == DateTime.Now.Month);
                 var currentMonthIncome = currentMonthTransactions?
                     .Where(t => t.Category.type == CategoryType.Income)
                     .ToList()
-                    .Sum(t => t.amount) ?? 0; ;
+                    .Sum(t => t.amount) ?? 0; 
                 var currentMonthExpense = currentMonthTransactions?
                     .Where(t => t.Category.type == CategoryType.Expense)
                     .ToList()

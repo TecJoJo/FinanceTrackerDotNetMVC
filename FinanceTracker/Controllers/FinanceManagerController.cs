@@ -109,11 +109,16 @@ namespace FinanceTracker.Controllers
 
             if (!ModelState.IsValid)
             {
+                var message = "Invalid form, please check the your input";
+                if (ModelState.TryGetValue("amount", out var amount) && amount.Errors.Any())
+                {
+                    message = "The amount and category type are not matching.";
+                }
                 // Constructing an object with the error message
-                var errorObject = new { error = "Invalid form" };
 
-                // Returning the error object as JSON
-                return RedirectToAction("Error", errorObject);
+                var errorObject = new { error = "Invalid form", message = message };
+
+                return Json(errorObject);
             }
             else
             {
@@ -128,17 +133,19 @@ namespace FinanceTracker.Controllers
                 entityToUpdate.TimeStamp = EditForm.TimeStamp;
 
                     _dbContext.SaveChanges();
+                    var successObject = new { success = true };
+                    return Json(successObject);
                 }
                 else
                 {
                     // Constructing an object with the error message
-                    var errorObject = new { error = "transaction is not found" };
+                    var errorObject = new { error = "Transaction not found", message = "Transaction is not found" };
 
                     // Returning the error object as JSON
                     return Json(errorObject);
                 }
 
-            return RedirectToAction("Index");
+            
             }
 
             

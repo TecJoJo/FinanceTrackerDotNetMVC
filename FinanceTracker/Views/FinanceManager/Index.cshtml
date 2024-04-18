@@ -12,7 +12,9 @@
     var model = Model;
     var groupedTransactions = Model.transactionListItems
         .OrderBy(t => t.TimeStamp)
-        .GroupBy(t => new { t.TimeStamp.Year, t.TimeStamp.Month });
+        .GroupBy(t => new { t.TimeStamp.Year, t.TimeStamp.Month })
+        .OrderByDescending(g => g.Key.Year)
+        .ThenByDescending(g => g.Key.Month);
 }
 
 
@@ -79,7 +81,7 @@
         </tbody>
     </table>
     
-    
+
 
 }
 else

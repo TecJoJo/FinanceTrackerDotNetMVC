@@ -35,9 +35,9 @@ improve ment
 
 [x]Login position, hide login if logged in 
 
-[]more data 
+[x]more data 
 
-[]manual 
+[x]manual 
 
 
 

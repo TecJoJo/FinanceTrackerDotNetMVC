@@ -53,6 +53,7 @@
                         <li class="list-group-item">Based on your saving goal<span class="text-primary fw-bold">(@(Model.SavingGoal)€)</span></li>
                         <li class="list-group-item">In the rest <span class="text-primary fw-bold">@currentMonthLeftDays</span> days</li>
                         <li class="list-group-item">Your maximum daily expense is <span class="text-danger fw-bold">@(Model.maxDailyExpense)€</span></li>
+                        <button data-toggle="modal" data-target="#exampleModal" type="button" class="btn btn-primary">New saving goal</button>
                     }
                     else{
 

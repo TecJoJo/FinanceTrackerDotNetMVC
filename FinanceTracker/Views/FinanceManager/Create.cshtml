@@ -25,10 +25,11 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form asp-controller="FinanceManager" asp-action="Create" method="post">
+                <form id="newTransaction" asp-antiforgery="true">
 
                     <div class="form-group">
                         <div class="form-row">
+                            <h5 id="createFormValidation" class="text-danger text-center"></h5>
                             <div class="form-group ">
 
                                 <label asp-for="amount">Amount:</label>
@@ -56,3 +57,8 @@
         </div>
     </div>
 </div>
+
+
+
+   
+

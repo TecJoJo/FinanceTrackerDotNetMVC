@@ -168,11 +168,17 @@ namespace FinanceTracker.Controllers
             int? customerId =  _userService.fetchUser();
             if (!ModelState.IsValid)
             {
+                var message = "Invalid form, please check the your input";
+                if(ModelState.TryGetValue("amount",out var amount) && amount.Errors.Any())
+                {
+                    message = "The amount and category type are not matching.";
+                }
                 // Constructing an object with the error message
-                var errorObject = new { error = "Invalid form" };
+                
+                var errorObject = new { error = "Invalid form",message = message };
 
-                // Returning the error object as JSON
-                return RedirectToAction("Error", errorObject);
+                return Json(errorObject);
+             
 
 
 
@@ -182,7 +188,7 @@ namespace FinanceTracker.Controllers
                 if (customerId == null)
                 {
                     // Constructing an object with the error message
-                    var errorObject = new { error = "CustomerId is missing, make sure you have logged in" };
+                    var errorObject = new { error = "User not found", message= "CustomerId is missing, make sure you have logged in" };
 
                     // Returning the error object as JSON
                     return Json(errorObject);
@@ -202,7 +208,8 @@ namespace FinanceTracker.Controllers
 
                 });
                 _dbContext.SaveChanges();
-                return RedirectToAction("Index");
+                    var successObject = new {success = true };
+                return Json(successObject);
                 }
             }
         }

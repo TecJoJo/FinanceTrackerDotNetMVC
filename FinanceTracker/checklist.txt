@@ -25,7 +25,30 @@ improve ment
 
 [x] daily expense and income bar chart https://www.chartjs.org/docs/latest/samples/bar/vertical.html
 
-[] FInance overview combo bar/line chart where savings expenses incomes are displayed  https://www.chartjs.org/docs/latest/samples/other-charts/combo-bar-line.html
+[x] FInance overview combo bar/line chart where savings expenses incomes are displayed  https://www.chartjs.org/docs/latest/samples/other-charts/combo-bar-line.html
+
+[x] daily expense cap and saving goal,
+
+[]form validation ajax, error handling
+
+
+
+[]add category 
+
+[]pie chart
+
+
+[] Potential saving can only be achieved by setting recurrent expense and recurrent income and we give a number 
+
+
+
+
+
+
+
+
+
+
 
 "
 
@@ -41,32 +64,6 @@ based on the calculation, in order to reach your saving goal, you daily expense 
 
 
 "
-
-
-[]form validation ajax, error handling
-
-
-[]expense chart to display savings, we set the saving goal which will in term be calculated to the daily expense cap and we show it and display as an indicator
-in the chart 
-
-[]pie chart
-
-
-[]add category 
-
-[] daily expense cap and saving goal,
-[] expense chart x axis should be from the last payday to next payday(monthly preview) if not it will be the beginning of the month and the ending of this month
-[]x days untill the next payday
-
-
-
-
-[] Potential saving can only be achieved by setting recurrent expense and recurrent income and we give a number 
-
-
-
-
-
 
 
 

@@ -29,7 +29,6 @@ async function fetchEditForm(transactionId) {
     })
 
     const innerHTML = await response.text()
-    console.log("innerHTML", innerHTML)
     return innerHTML
 
 
